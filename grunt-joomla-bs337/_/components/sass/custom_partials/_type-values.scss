@@ -1,0 +1,228 @@
+//      02. type_values        */
+
+
+@import "compass/typography";
+@import "type-mixins";
+
+
+// Typography variables
+// 16px Helvetica Neue (face defined in "_bs_variables.scss")
+$base-font-size: 16px;
+
+$nrw-font-size: 14px;
+
+$print-font-size: 12px;
+
+// The $base-line-height is set to 1/4 of the final line-height
+// to provide flexibility in compass/typography
+$base-line-height: $base-font-size * 1.5 / 4;
+$nrw-line-height: $nrw-font-size * 1.5 / 4;
+$print-line-height: $print-font-size * 1.5 / 4;
+
+
+@include establish-baseline;
+
+
+// Major Third Scale: 1.2
+$type-scale: 1.25;
+
+// Major Second Scale: 1.125
+$nrw-type-scale: 1.125;
+
+// Minor Second Scale: 1.125
+$print-type-scale: 1.067;
+
+$scale-up: $base-font-size / $nrw-font-size;
+$scale-down: $nrw-font-size / $base-font-size;
+
+$lg-modScale: disperser($base-font-size, $type-scale);
+
+$xx-small-type: map-get($lg-modScale, xxs-type);
+$x-small-type:  map-get($lg-modScale, xs-type);
+$small-type:  	map-get($lg-modScale, s-type);
+
+$large-type: 	map-get($lg-modScale, l-type);
+$x-large-type:  map-get($lg-modScale, xl-type);
+$xx-large-type:	map-get($lg-modScale, xxl-type);
+$primary-head:  map-get($lg-modScale, primary-head);
+
+
+$nrw-type-mod: $base-font-size / $nrw-font-size;
+$nrw-modScale: disperser($nrw-font-size, $nrw-type-scale, $nrw-type-mod);
+
+
+$nrw-xx-small-type:     map-get($nrw-modScale, xxs-type);
+$nrw-x-small-type:      map-get($nrw-modScale, xs-type);
+$nrw-small-type:        map-get($nrw-modScale, s-type);
+$nrw-large-type:        map-get($nrw-modScale, l-type);
+$nrw-x-large-type:      map-get($nrw-modScale, xl-type);
+$nrw-xx-large-type:     map-get($nrw-modScale, xxl-type);
+$nrw-primary-head:      map-get($nrw-modScale, primary-head);
+
+
+$print-modScale: disperser($print-font-size, $print-type-scale);
+
+$print-type-mod: $base-font-size / $print-font-size;
+
+$print-xx-small-type:     map-get($print-modScale, xxs-type);
+$print-x-small-type:      map-get($print-modScale, xs-type);
+$print-small-type:        map-get($print-modScale, s-type);
+$print-large-type:        map-get($print-modScale, l-type);
+$print-x-large-type:      map-get($print-modScale, xl-type);
+$print-xx-large-type:     map-get($print-modScale, xxl-type);
+$print-primary-head:      map-get($print-modScale, primary-head);
+
+
+
+%xx-small-type {
+    @include typesetter('xxs-type',2);
+}
+
+%x-small-type {
+    @include typesetter('xs-type',3);
+}
+
+%small-type {
+    @include typesetter('s-type',4);
+}
+
+// ======================================
+
+%base-element {
+    @include typesetter('base',4);
+}
+
+// ======================================
+
+%large-type {
+    @include typesetter('l-type',4);
+}
+
+%x-large-type {
+    @include typesetter('xl-type',4);
+}
+
+%xx-large-type {
+    @include typesetter('xxl-type',8);
+
+    @include responsive(xs){
+        line-height: rhythm(4, $nrw-xx-large-type);
+    };
+}
+
+%primary-head {
+    @include typesetter('primary-head',8);
+
+    @include responsive(xs){
+        // line-height: rhythm(4, ($nrw-primary-head  * $nrw-type-mod));
+    };
+}
+
+//  Data sets
+%data-label {
+    @extend %small-type;
+    margin-bottom: 0;
+    color: $gray-light;
+
+    small {
+        line-height: rhythm(4, $small-type);
+        color: lighten($gray-light, 10);
+    }
+
+    @include print-screen(){
+        @include adjust-font-size-to($print-small-type, 3, $print-font-size);
+        color: $gray-light !important;
+    };
+}
+
+%data-point {
+    @extend %large-type;
+    margin-bottom: 0;
+
+    @include print-screen(){
+        @extend %print-large-type;
+    };
+}
+
+
+//   Components that rely on type
+
+$comp-border: #ddd;
+$comp-bg: #f5f5f5;
+$comp-bg-shade: lighten($gray-light, 30);
+$comp-border-shade: darken($comp-bg-shade, 5);
+
+%bordered-component-both {
+    @include horizontal-borders(1px, 2);
+
+    @include responsive(xs) {
+        @include horizontal-borders(1.15px, 2);
+    }    
+
+    @include print-screen() {
+        @include horizontal-borders(1px, 1.5, $print-font-size);
+    }    
+}
+%bordered-component-top {
+    padding-bottom: rhythm(2);
+    @include leading-border(1px, 2);
+    @include responsive(xs) {
+        @include leading-border(1.15px, 2);
+    }    
+
+    @include print-screen() {
+        @include leading-border(1px, 1.5, $print-font-size);
+    }    
+
+    border-bottom: 0;
+}
+%bordered-component-bottom {
+    border-top: 0;
+    padding-top: rhythm(2);
+    @include trailing-border(1px, 2);
+    @include responsive(xs) {
+        @include trailing-border(1.15px, 2);
+    }    
+    @include print-screen() {
+        @include trailing-border(1px, 1.5, $print-font-size);
+    }    
+
+}
+
+
+
+@include print-screen {
+
+    %print-x-small-type {
+        @include print-typesetter('xs-type');
+    }
+
+    %print-small-type {
+        @include print-typesetter('s-type');
+    }
+
+    // ======================================
+
+    %print-base-element {
+        @include print-typesetter('base');
+    }
+
+    // ======================================
+
+    %print-large-type {
+        @include print-typesetter('l-type');
+    }
+
+    %print-x-large-type {
+        @include print-typesetter('xl-type');
+    }
+
+    %print-xx-large-type {
+        @include print-typesetter('xxl-type',8);
+    }
+    %print-primary-head {
+        @include print-typesetter('primary-head',8);
+    }
+}
+
+

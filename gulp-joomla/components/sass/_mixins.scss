@@ -1,0 +1,121 @@
+/*  ==========================
+     	   Mixins - SASS
+    ==========================  */
+
+
+@import "compass/css3/box-shadow";
+
+
+// Responsive breakpoint generation
+
+@mixin responsive ($width) {
+    // Only 1200px and larger
+    @if $width == lg {
+        @media only screen and (min-width: $screen-lg)
+        {@content}
+    }
+    // 1199px and less
+    @else if $width == md {
+        @media only screen and (max-width: $screen-md-max)
+        {@content}
+    }
+    // 992px and up
+    @else if $width == md-up {
+        @media only screen and (min-width: $screen-md)
+        {@content}
+    }
+    // Only between 992px and 1199px
+    @else if $width == md-only {
+        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max)
+        {@content}
+    }
+    // 991px and less
+    @else if $width == sm {
+        @media only screen and (max-width: $screen-sm-max)
+        {@content}
+    }
+    // 768px and up
+    @else if $width == sm-up {
+        @media only screen and (min-width: $screen-sm)
+        {@content}
+    }
+    // Only between 768px and 991px
+    @else if $width == sm-only {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max)
+        {@content}
+    }
+    // 767px and less
+    @else if $width == xs {
+        @media only screen and (max-width: $screen-xs-max)
+        {@content}
+    }
+    // 480px and up
+    @else if $width == xs-up {
+        @media only screen and (min-width: $screen-xs)
+        {@content}
+    }
+    // Only between 480px and 767px
+    @else if $width == xs-only {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max)
+        {@content}
+    }
+    // 379px and less
+    @else if $width == xxs {
+        @media only screen and (max-width: $screen-xs - 1)
+        {@content}
+    }
+}
+@mixin print-screen () {
+    @media only print
+    {@content}
+}
+
+
+@mixin card-shadow() {
+    box-shadow: 0 1px 2px #aaa;  // Google Cards
+}
+
+//  For development only
+@mixin shaded($color: 156, $opacity: 0.5) {
+    background-color: rgba($color, $color, $color, $opacity);
+};
+
+
+//
+// map-fetch($map, $keys)
+//
+// An easy way to fetch a deep value in a multi-level map. Works much like
+// map-get() except that you pass multiple keys as the second parameter to
+// go down multiple levels in the nested map.
+//
+// Credit: J W Long
+// URL:    https://gist.github.com/jlong/8760275
+//
+
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+  @if ($length > 1) {
+    $rest: ();
+    @for $i from 2 through $length {
+      $rest: append($rest, nth($keys, $i))
+    }
+    @return map-fetch($value, $rest)
+  } @else {
+    @return $value;
+  }
+}
+
+
+//
+//  Bootstrap Adjustments
+//
+
+@mixin strap-stretch() {
+    margin-left: $el-pad * -1;
+    margin-right: $el-pad * -1;
+    padding-left: $el-pad;
+    padding-right: $el-pad;
+}
+

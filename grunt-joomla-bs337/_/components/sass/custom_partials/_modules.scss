@@ -1,0 +1,350 @@
+/* 
+    ==========================
+          Modules - SASS
+    ==========================
+*/
+
+// @import "mod-bso-components";
+// @import "mod-joomla-overwrites";
+@import "mod-navigation";
+
+#jt-home {
+    background-image: url(../../../images/in_studio.jpg);
+
+    @include responsive(sm-up) {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+        z-index: 999;
+        text-align: center;
+        height: 100vh;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    @include responsive(md-only){
+        background-size: 80%;
+        background-position: 80% center;
+    };
+
+    @include responsive(sm-only){
+        background-position: 80% center;
+    };
+
+    @include responsive(xs) {
+        background-size: 120%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        height: 350px;
+    }
+
+
+    .jt-text {
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+
+        h1 {
+            color: #fff;
+            letter-spacing: 0.1em;
+
+            @include responsive(sm-up) {
+                @include adjust-font-size-to($primary-head * 2, 8);
+            }
+
+
+            @include responsive(xs) {
+                @include adjust-font-size-to($primary-head, 8);
+            }
+
+
+            small {
+                color: #fff;
+
+                @include adjust-font-size-to($small-type, 4, $primary-head);
+                letter-spacing: 0.15em;
+
+                font-weight: 400;
+                display: block;
+                margin-top: rhythm(2.5, $small-type);
+
+                @include leading-border(1px, 0.5, $small-type);
+
+                border-color: #ccc;
+            }
+        }
+    }
+}
+
+#jt-hometest {
+    background-image: url(../../../images/blue_curtain2.jpg);
+    background-repeat: no-repeat;
+
+    @include responsive(sm-up) {
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        z-index: 999;
+        text-align: center;
+        height: 100vh;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    @include responsive(md-up){
+        background-position: 17.5% center;
+    };
+    @include responsive(sm-only){
+        background-position: 17.5% center;
+    };
+
+
+    @include responsive(xs) {
+        width: 100%;
+        height: 385px;
+        background-size: 600px;
+        background-position: center 48px;
+        background-color: rgba(17,31,138,1);
+        position: relative;
+        text-align: center;
+    }
+
+    @include responsive(xxs){
+        background-size: 600px;
+        background-position: -35px 48px;
+        height: 385px;
+    };
+
+
+    .jt-text {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: rgba(255,255,255, 0.7);
+
+        @include responsive(xs){
+            // Needs latest Compass, add '@import "compass"' to your scss
+            // Permalink - use to edit and share this gradient:
+            // http://colorzilla.com/gradient-editor/#080e58+0,080e58+13,251fcb+25,4e47aa+40,040653+60,040653+60,575cd1+73,575cd1+73,080e58+85,080e58+100
+            // background-color: rgb(8,14,88); // Old browsers
+            // @include filter-gradient(#080e58, #080e58, horizontal); // IE6-9
+            // @include background-image(linear-gradient(left,  rgba(8,14,88,1) 0%,rgba(8,14,88,1) 13%,rgba(37,31,203,1) 25%,rgba(78,71,170,1) 40%,rgba(4,6,83,1) 60%,rgba(4,6,83,1) 60%,rgba(87,92,209,1) 73%,rgba(87,92,209,1) 73%,rgba(8,14,88,1) 85%,rgba(8,14,88,1) 100%));
+            bottom: -35px;
+        };
+
+
+        h1 {
+            color:  $me-burgundy;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 2px 1px #999;
+
+            @include responsive(sm-up) {
+                @include adjust-font-size-to($primary-head * 2, 8);
+                margin-top: rhythm(3, $primary-head);
+                margin-bottom: rhythm(1, $primary-head);
+            }
+
+
+            @include responsive(xs) {
+                @include adjust-font-size-to($primary-head, 6);
+                margin-top: rhythm(1, $primary-head);
+                margin-bottom: rhythm(1, $primary-head);
+            }
+
+
+            small {
+                color: $me-burgundy;
+
+                @include adjust-font-size-to($small-type, 4, $primary-head);
+                letter-spacing: 0.15em;
+
+                font-weight: 400;
+                display: block;
+                margin-top: rhythm(2.5, $small-type);
+
+                @include leading-border(1px, 0.5, $small-type);
+
+                border-color: $me-burgundy;
+            }
+        }
+    }
+}
+
+
+
+/*      Responsive Media container from AVEX Design (link below)     */
+figure.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+
+    /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+
+    iframe, object, embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @include responsive(xs) {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        min-height: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0 -15px rhythm(4);
+
+        iframe, object, embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.btn-holder-wiki {
+    margin: 3em 0;
+
+    .col-sm-6:first-child {
+        @include responsive(sm-up){
+            position: relative;
+
+            .input-group {
+                max-width: 255px;
+                position: absolute;
+                right: 0;
+            }
+
+        };
+
+        @include responsive(xs){
+            margin-bottom: rhythm(4);
+        };
+    }
+
+    .input-group-btn {
+        width: 100px;
+
+        .btn {
+            font-weight: 700;
+        }
+    }
+}
+
+aside#photo-credits {
+    @include adjust-font-size-to($small-type,4);
+    text-align: center;
+}
+
+
+.btn-paypal-add,
+.btn-paypal-view {
+    font-weight: 700;
+    width: 150px;
+    text-align: left;
+    margin: 0 auto rhythm(2);
+
+    @include responsive(xxs) {
+        width: 125px;
+
+        @include adjust-font-size-to($nrw-small-type, 4);
+    }
+
+
+    &:before {
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        margin-right: 0.75em;
+    }
+}
+
+.postage {
+    width: 150px;
+    margin: 0 auto;
+    padding: 0 0 0 2em;
+    text-indent: -0.6em;
+
+    a {
+        text-decoration: none;
+    }
+
+}
+
+form.form-paypal {
+    text-align: center;
+}
+
+.btn-paypal-add {
+    color: #385174;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefcea+20,fca737+73,f9f9f9+94 */
+    background: rgb(254, 252, 234);
+
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(254, 252, 234, 1) 20%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(254, 252, 234, 1) 20%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(254, 252, 234, 1) 20%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f9f9f9',GradientType=0 );
+
+    /* IE6-9 */
+    border-color: #FC9840;
+
+    &:before {
+        content: "\f055";
+    }
+
+    &:hover {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefcea+7,fca737+55,fca737+73,f9f9f9+94 */
+        background: rgb(254, 252, 234);
+
+        /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(254, 252, 234, 1) 7%, rgba(252, 167, 55, 1) 55%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(254, 252, 234, 1) 7%, rgba(252, 167, 55, 1) 55%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(254, 252, 234, 1) 7%, rgba(252, 167, 55, 1) 55%, rgba(252, 167, 55, 1) 73%, rgba(249, 249, 249, 1) 94%);
+
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f9f9f9',GradientType=0 );
+
+        /* IE6-9 */
+    }
+}
+
+.btn-paypal-view:before {
+    content: "\f07a";
+}
+
+.lightbox {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(255,255,255, 0.7);
+
+    #int-postage {
+        margin-top: rhythm(48);
+    }
+}

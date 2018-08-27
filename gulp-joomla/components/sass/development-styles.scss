@@ -1,0 +1,98 @@
+@import "variables";
+@import "mixins";
+
+.grid-underlay {
+
+	.main-holder {
+		@include responsive(lg) {
+			background: #fff url(../img/col-lg-bl-24-full.png) 0 0;
+		}
+		@include responsive(md) {
+			background: #fff url(../img/col-md-bl-24-full.png);
+		}
+		@include responsive(sm) {
+			background: #fff url(../img/col-sm-bl-24-full.png);
+		}
+		@include responsive(xs) {
+			background:  url(../img/baseline-21px.png);
+		}
+
+		// background-position: 0 4px !important;
+	}
+
+	.navbar > .container {
+        @include responsive(xs) {
+            background: #fff url(../img/baseline-24px.png) !important;
+        }
+    }
+
+
+}
+
+.control-grid {
+	@include responsive(sm-only) {
+		display: none !important;
+	}	
+}
+
+.grid-baseline .main-holder {
+	background: #fff url(../img/baseline-24px.png);
+
+	@include responsive(xs) {
+		background: #fff url(../img/baseline-21px.png);
+	}	
+}
+
+.grid-check-holder {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 500;
+	display: none;
+
+	.container, .container-fluid {
+		background: transparent;
+	}
+
+	div {
+		height: 100%;
+	}
+
+	.row div {
+		color: #aaa;
+		
+		@include responsive(lg) {
+			background: url(../img/col-lg-bl-24.png);
+		}
+		@include responsive(md) {
+			background: url(../img/col-md-bl-24.png);
+		}
+		@include responsive(sm) {
+			background: url(../img/col-sm-bl-24.png);
+		}
+		@include responsive(xs) {
+			background:  url(../img/baseline-21px.png);
+		}
+	}
+
+}
+
+.grid-overlay {
+
+	.grid-check-holder {
+		display: block;
+
+		@include responsive(xs) {
+		}
+	}
+	.table > tbody > tr:nth-child(odd) > td {
+		background-color: rgba(200,200,255,0.5);
+	}
+
+}
+
+nav .navbar-nav li.control-grid {
+	@include responsive(xs) {
+	    display: none;
+	}
+}

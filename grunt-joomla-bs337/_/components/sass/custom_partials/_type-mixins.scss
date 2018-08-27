@@ -1,0 +1,103 @@
+//      01. type_mixins        */
+
+@function disperser($tempBaseFont, $tempTypeScale, $typeMod: 1) {
+	$pixelSizes: ();
+	$modifiedSize: 1;
+	@for $i from -3 through 4 {
+	    $modifiedSize: exponent($tempTypeScale, $i, 1) * $tempBaseFont;
+	    $pixelSizes: append($pixelSizes, $modifiedSize);
+	}
+
+	$sizeMap: (
+	    xxs-type:       nth($pixelSizes, 1) * $typeMod, 
+	    xs-type:        nth($pixelSizes, 2) * $typeMod,
+	    s-type:         nth($pixelSizes, 3) * $typeMod,
+	    base:           nth($pixelSizes, 4) * $typeMod,
+	    l-type:         nth($pixelSizes, 5) * $typeMod, 
+	    xl-type:        nth($pixelSizes, 6) * $typeMod, 
+	    xxl-type:       nth($pixelSizes, 7) * $typeMod, 
+	    primary-head:   nth($pixelSizes, 8) * $typeMod
+	);
+	
+	@return $sizeMap;
+}
+
+@mixin typesetter($setSize, $lineHeight: 4) {
+    @include adjust-font-size-to(map-get($lg-modScale, $setSize), $lineHeight);
+    @include rhythm(0,0,0,4,(map-get($lg-modScale, $setSize)));
+
+    @include responsive(xs) {
+		// $tempSize:  * $nrw-type-mod;
+        @include adjust-font-size-to(map-get($nrw-modScale, $setSize),$lineHeight);
+	    @include rhythm(0,0,0,4, map-get($nrw-modScale, $setSize));
+    }
+}
+
+@mixin print-typesetter($setSize, $lineHeight: 4) {
+	$tempSize: map-get($print-modScale, $setSize) * $print-type-mod;
+    @include adjust-font-size-to($tempSize, $lineHeight);
+    @include rhythm(0,0);
+}
+
+@mixin header-format {
+	#{headings()} {
+	    letter-spacing: 0.05em;
+	    & + #{headings()} {
+	        margin-top: 0;
+	    }
+	}
+
+	#{headings(1, 3)} {
+	    font-weight: 300;
+	}
+
+	#{headings(4, 6)} {
+	    margin-bottom: 0;
+	    & + p {
+	        margin-top: 0;
+	    }
+	}
+}
+
+@mixin data-label-maker($labelWidth, $elType) {
+	@if $elType == 'dl' {
+		dt {
+			width: $labelWidth;
+		}
+
+	    dd.notation {
+        	margin-left: 0;
+        }
+
+	} @else if $elType == 'table-hz' {
+
+			.data-label {
+				width: $labelWidth;
+			}
+		    .data-point {
+	        	margin-left: exponent($type-scale, -2, 2) * $labelWidth;
+	        }
+
+	} @else if $elType == 'table' {
+		div.micro-th {
+			width: $labelWidth + 1.2em;
+			margin-left: -1.2em;
+		}
+	    & > tbody > tr {
+
+		    & > td,
+		    & > td[class^="col-"] {
+	            margin-left: exponent($nrw-type-scale, -1, 1) * $labelWidth;
+
+	            &:first-child {
+	            	margin: 0 ($el-pad * -1);
+	            	padding-left: $el-pad;
+	            	padding-right: $el-pad;
+	            }
+	        }
+	    }
+
+	} @else {
+		background-color: red;
+	}
+}

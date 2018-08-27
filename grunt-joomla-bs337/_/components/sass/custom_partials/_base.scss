@@ -1,0 +1,66 @@
+/* 
+    ==========================
+        Base Elements - SASS
+    ==========================
+*/
+@import "compass/css3";
+@import "base-bso-elements";
+
+// @import "base-joomla-overwrites";
+
+body {}
+
+figure {
+    margin-bottom: rhythm(4);
+
+    img {
+        width: 100%;
+    }
+
+    figcaption {
+        @extend %small-type;
+
+        margin-top: 0;
+    }
+
+    &.half-col {
+        @include responsive(xs-up) {
+            width: 47%;
+            float: left;
+            margin-left: 0;
+            margin-right: $el-pad * 2;
+
+            &.right {
+                float: right;
+                margin-left: $el-pad * 2;
+                margin-right: 0;
+            }
+        }
+
+
+        @include responsive(xxs) {
+            max-width: 225px;
+            margin: 0 auto rhythm(4);
+        }
+    }
+    &.third-col {
+        @include responsive(xs-up) {
+            width: 30%;
+            float: left;
+            margin-left: 0;
+            margin-right: $el-pad * 2;
+
+            &.right {
+                float: right;
+                margin-left: $el-pad * 2;
+                margin-right: 0;
+            }
+        }
+
+
+        @include responsive(xxs) {
+            max-width: 225px;
+            margin: 0 auto rhythm(4);
+        }
+    }
+}

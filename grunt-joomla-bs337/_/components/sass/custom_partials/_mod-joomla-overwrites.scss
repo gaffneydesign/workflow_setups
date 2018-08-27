@@ -1,0 +1,9 @@
+/*
+	Joomla: Module Overwrites
+*/
+
+%featured-pricing {
+	@extend %xx-large-type;
+	@include rhythm(2,0,0,0,$xx-large-type);
+	text-align: center;
+}

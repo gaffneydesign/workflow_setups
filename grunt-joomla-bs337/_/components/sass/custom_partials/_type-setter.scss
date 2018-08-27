@@ -1,0 +1,163 @@
+/*  =================================
+        Typography - SASS/Compass
+    =================================   */
+
+/*      01. type-mixins        */
+/*      02. type-values        */
+@import "custom_partials/type-values";
+
+
+@mixin type-measure() {
+    max-width: 748px;
+}
+
+
+body {
+    font-size: $base-font-size;
+
+    @include responsive(xs){
+        font-size: $nrw-font-size;
+    };
+}
+
+/*      03. type-setter                 */
+
+%h-sub {
+    display: block;
+    font-weight: 300;
+    letter-spacing: 0;
+    width: 100%;
+}
+
+h1 {
+    @extend %primary-head;
+    margin-top: rhythm(8, $primary-head);
+
+    @include responsive(xs){
+        line-height: rhythm(4, $nrw-primary-head);
+        margin: rhythm(6, $nrw-primary-head) 0  rhythm(2, $nrw-primary-head);
+    };
+
+    small.sub-head {
+        @extend %h-sub;
+        @include adjust-font-size-to($x-large-type, 4, $primary-head);
+        @include rhythm(0);
+
+        @include responsive(xs){
+            @include adjust-font-size-to($nrw-large-type, 4, $nrw-primary-head);
+        };
+    }
+}
+
+h2 {
+    @extend %xx-large-type;
+    @include rhythm(6, 0, 0, 2, $xx-large-type);
+    // color: $ml-brown;
+
+    @include responsive(xs){
+       @include rhythm(8, 0, 0, 4, $nrw-xx-large-type);
+    };
+
+    small.sub-head {
+        @extend %h-sub;
+        @include adjust-font-size-to($large-type, 4, $xx-large-type);
+        margin-top: rhythm(-1,$large-type);
+        padding-bottom: rhythm(1,$large-type);
+
+        @include responsive(xs){
+            font-size: $nrw-font-size;
+            line-height: rhythm(4);
+            @include rhythm(0,1);
+        };
+    }
+}
+
+h3 {
+    @extend %x-large-type;
+    @include rhythm(0, 2, 2, 0, $x-large-type);
+    // color: $ml-brown;
+
+    @include responsive(xs){
+       @include rhythm(0, 2, 2, 0, $nrw-x-large-type);
+    };
+
+    small.sub-head {
+        @extend %h-sub;
+        @include adjust-font-size-to($base-font-size, 4, $x-large-type);
+
+        @include responsive(xs){
+            @include adjust-font-size-to($nrw-small-type, 4, $nrw-x-large-type);
+        };
+    }
+}
+
+h4 {
+    @extend %large-type;
+}
+
+h5 {
+    @extend %base-element;
+}
+
+h6 {
+    @extend %small-type;
+}
+
+p, ul, ol, dt, dd, address {
+    @extend %base-element;
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+p, li, dt, dd, address {
+    @include type-measure;
+}
+
+
+
+p {
+    &.lead {
+        @extend %large-type;
+        @include type-measure;
+        font-weight: 400;
+    }
+    &.sym01 {
+        text-indent: -0.65em;
+    }
+    &.sym02 {
+        text-indent: -0.95em;
+    }
+}
+
+b, strong {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+small {
+    @include adjust-font-size-to($small-type);
+    line-height: inherit;
+}
+
+.footnote > * {
+    @extend %x-small-type;
+    @include type-measure;
+}
+
+ul, ol {
+    margin-top: 0;
+    padding-left: 2em;
+}
+dl {
+    margin-bottom: 0;
+}
+dt {
+    margin-bottom: 0;
+}
+dd {
+    margin-top: 0;
+    margin-left: 2em;
+}
+
+@include header-format;
