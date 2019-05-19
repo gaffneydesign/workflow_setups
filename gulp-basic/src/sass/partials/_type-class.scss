@@ -1,0 +1,38 @@
+/*          file: type-class.scss */ 
+
+
+%x-small-type {
+    @include scaler('x-small-type');
+}
+
+%small-type {
+    @include scaler('small-type');
+}
+
+// ======================================
+
+%base-element {
+    @include scaler('base');
+}
+
+// ======================================
+
+%large-type {
+    @include scaler('large-type');
+}
+
+%x-large-type {
+    @include scaler('x-large-type');
+}
+
+%xx-large-type {
+    @include scaler('xx-large-type');
+}
+
+%primary-head {
+    @include scaler('primary-head');
+}
+
+
+$jthead-type: exponent($type-scale, 5, 1) * $base-font-size;
+

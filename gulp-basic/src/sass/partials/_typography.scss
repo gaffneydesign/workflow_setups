@@ -1,0 +1,167 @@
+/*		  Global Typography: typography.scss	*/
+/*		  ==================================	*/
+
+/*		  3.1 Typographic Calculations		*/
+@import "type-calc";
+/*		  3.2 Typography Classes 			*/
+@import "type-class";
+/*		  3.3 Iconography: Font Awesome Gem	*/
+@import "font-awesome-compass";
+@import "font-awesome";
+
+/*		  3.4 Basic Site Typography: Body and Main Sections	*/
+html, body {
+	font: $base-font-size 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	
+	@include responsive(xs){
+		font-size: $nrw-font-size;
+	};
+
+	*, ::after, ::before {
+		box-sizing: border-box;
+	}
+
+}
+
+
+strong {
+  font-weight: 500;
+}
+em {
+  font-style: italic;
+}
+
+h1 {
+	@extend %primary-head;
+	margin-bottom: beat(6);
+	font-weight: 400;
+
+	@include responsive(xs){
+		padding: 0 $el-pad;
+	};
+
+}
+
+.main-content {
+
+	h2 {
+		@extend %xx-large-type;
+		margin: beat(6) 0 beat(2);
+	}
+	h3 {
+		@extend %x-large-type;
+		margin-bottom: beat(2);
+	}
+	h4 {
+		@extend %large-type;
+		padding: beat(1) 0;
+	}
+	h5 {
+		@extend %base-element;
+		padding: beat(1) 0;		
+		font-weight: 700;
+	}
+
+	h6 {
+		@extend %small-type;
+		padding: beat(1) 0;		
+		font-weight: 700;
+	}
+
+
+	p, ul, ol, dt, dd, address {
+		@extend %base-element;
+		margin-bottom: beat();
+	}
+
+    ul, ol {
+        margin-top: 0;
+        padding-left: 1.1em;
+
+        li {
+            margin-bottom: beat(1);
+            max-width: 45.6em;
+        }
+    }
+
+    ul {
+        list-style-type: disc;
+    }
+
+    ol {
+        list-style-type: decimal;
+
+        li {
+            padding-left: 0.25em;
+            max-width: 45.4em;
+        }
+    }
+
+
+    dl {
+        margin-bottom: 0;
+    }
+
+    dt {
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    dd {
+        margin: 0 0 beat(4) 0.75em;
+    }
+
+
+	p {
+		max-width: 46.7em;
+	}
+
+	p.lead {
+		@extend %large-type;
+		// Add when out of Development
+		// line-height: 1.4;
+		margin: 0 0 beat(4);
+	}
+
+	p.small-type {
+		@extend %small-type;
+		// Add when out of Development
+		// line-height: 1.4;
+		margin: 0 0  beat(4);
+	}
+
+	p.list-lead {
+		margin-bottom: beat(2);
+	}
+
+	figcaption {
+		@extend %small-type;
+		font-weight: 700;
+	}
+
+	.footnote {
+		* {
+			@include scaler('x-small-type');
+		}
+		
+		h1,h2,h3,h4,h5,h6 {
+			@include clearbox;
+			font-weight: 700;
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+		
+		p, ul, ol, dd, address {
+			line-height: beat(3);
+			margin-bottom: beat(4);
+		}
+
+		*.sym01 {
+			text-indent: -0.7em;
+		}
+		*.sym02 {
+			text-indent: -1em;
+		}
+	}
+}
