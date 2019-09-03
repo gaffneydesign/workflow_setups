@@ -1,0 +1,207 @@
+@import "variables";
+@import "decimal";
+
+@function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
+
+@function set-text-color($color) {
+    @if lightness($color) < 75 and lightness($color) > 25 {
+        @warn "`#{$color}` Bad BG choice for `$color`";
+    }
+
+    @if lightness($color) > 50 {
+        @return #000000; // Lighter backgorund, return dark color
+    }
+
+    @else {
+        @return #ffffff; // Darker background, return light color
+    }
+}
+
+
+$brand: (
+  primary:      $brand-primary,
+  prime-light:      tint($brand-primary, 50),
+  prime-dark:       shade($brand-primary, 50),
+  accent:       adjust-hue($brand-primary, 180),
+  secondary:    adjust-hue($brand-primary, 135),
+  terciary:     adjust-hue($brand-primary, -135)
+);
+
+
+// Set the Type Size names, assign placement on the scale
+$typeMap: (
+  x-small-type:     -2,
+  small-type:       -1,
+  base:              0,
+  large-type:        1,
+  x-large-type:      2,
+  xx-large-type:     3,
+  primary-head:      4
+);
+
+@function power($exponent, $value, $factor) {
+    @if $exponent > 0 {
+        @for $i from 1 through $exponent {
+            $value: $value * $factor;
+        }
+    }
+
+    @else if $exponent < 0 {
+        @for $i from 1 through -$exponent {
+            $value: $value / $factor;
+        }
+    }
+
+    @return $value;
+}
+
+$type-rhythm-px: $base-font-size / 1rem * $line-height;
+
+@mixin typesetter($sizeName) {
+    $sizePower: map-get($typeMap, $sizeName);
+
+    // @debug "----" $sizeName "----";
+
+    // Calculate the adjustments
+    $size-adjustor: power($sizePower, 1, $type-scale);
+    $height-adjustor: power($sizePower * -1, $line-height, $type-scale);
+
+    $fz-pixels: $size-adjustor * $base-font-size / 1rem;
+
+    @if $fz-pixels > $type-rhythm-px * 0.85 {
+        $height-adjustor: $height-adjustor * 1.5;
+    }
+
+    @if $fz-pixels < $base-font-size {
+        $height-adjustor: $height-adjustor * 0.75;
+    }
+
+    $chrome-hack: 0.001;
+
+    font-size: $size-adjustor * $base-font-size;
+    line-height: $height-adjustor + $chrome-hack;
+}
+
+@function beat($beats: 4) {
+    @return $line-height * $base-font-size / 4 * $beats;
+}
+
+@mixin clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin strap-stretch {
+    margin-left: $el-pad * -1;
+    margin-right: $el-pad * -1;
+    padding-left: $el-pad;
+    padding-right: $el-pad;
+}
+
+@mixin comp-colors-solid($stateColor) {
+    color: set-text-color($stateColor);
+    background-color: $stateColor;
+    border-color: darken($stateColor, 10);
+}
+@mixin comp-colors-outline($stateColor) {
+    color: darken($stateColor, 15);
+    background-color: tint($stateColor, 80);
+    border-color: darken($stateColor, 10);
+}
+
+
+//  For development only
+@mixin shaded($color: 156, $opacity: 0.5) {
+    background-color: rgba($color, $color, $color, $opacity);
+}
+
+// Responsive breakpoint generation
+@mixin responsive($width) {
+    // Only 1200px and larger
+    @if $width == lg {
+        @media only screen and (min-width: $screen-lg) {
+            @content;
+        }
+    }
+
+    @else if $width == md {
+        @media only screen and (max-width: $screen-md-max) {
+            @content;
+        }
+    }
+
+    @else if $width == md-up {
+        @media only screen and (min-width: $screen-md) {
+            @content;
+        }
+    }
+
+    @else if $width == md-only {
+        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
+            @content;
+        }
+    }
+
+    @else if $width == sm {
+        @media only screen and (max-width: $screen-sm-max) {
+            @content;
+        }
+    }
+
+    @else if $width == sm-up {
+        @media only screen and (min-width: $screen-sm) {
+            @content;
+        }
+    }
+
+    @else if $width == sm-only {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+            @content;
+        }
+    }
+
+    @else if $width == xs {
+        @media only screen and (max-width: $screen-xs-max) {
+            @content;
+        }
+    }
+
+    @else if $width == xs-up {
+        @media only screen and (min-width: $screen-xs) {
+            @content;
+        }
+    }
+
+    @else if $width == xs-only {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+            @content;
+        }
+    }
+
+    @else if $width == xxs {
+        @media only screen and (max-width: $screen-xs - 1) {
+            @content;
+        }
+    }
+
+    @else if $width == sm-md {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-md-max) {
+            @content;
+        }
+    }
+
+    @else if $width == phablet {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+
+body {
+	display: grid;
+	grid-template-columns: minmax(290px, $screen-lg);
+	grid-template-rows: auto auto auto;
+	justify-content: center;
+
+	padding: 60rem 0;
+
+	& > * {
+		padding-left: $el-pad;
+		padding-right: $el-pad;
+	}
+}
+
+
+// Dev Properties
+.grid-underlay {
+    background: #999 url(../img/devbg_12c_full.png) center 0px repeat-y;
+    background-size: 100% ($type-rhythm-px * 1px);
+
+	@include responsive(xxs){
+	    background: #999 url(../img/devbg_type_white.png) center 0px repeat-y;
+	    background-size: 100% ($type-rhythm-px * 1px);
+	};
+
+	@include responsive(lg){
+	    background-size: 1200px ($type-rhythm-px * 1px);
+	};
+
+}
+
+.main-content {
+	padding-top: beat(2);
+}

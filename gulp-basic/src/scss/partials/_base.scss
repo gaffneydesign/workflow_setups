@@ -1,0 +1,64 @@
+@import 'class-lib';
+
+
+
+html {
+  font-size: 1px;
+}
+
+body {
+  font-size: $base-font-size;
+  line-height: $line-height;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  @extend %primary-head;
+  padding-bottom: beat(2);
+  margin-bottom: 1px;
+
+  color: var(--primary-clr, #f00);
+}
+
+h2 {
+  @extend %xx-large-type;
+  padding-bottom: beat(2);
+}
+
+h3 {
+  @extend %x-large-type;
+  padding-top: beat(2);
+}
+
+h4 {
+  @extend %large-type;
+}
+
+h5 {
+
+}
+
+h6 {
+  @extend %small-type;
+}
+
+.footnote > * {
+  @extend %x-small-type;
+}
+
+p, ul, ol, dl, address {
+  // margin: 0 0 15rem;
+  margin-bottom: beat();
+}
+
+p.lead {
+  @extend %large-type;
+}
+
+p.small {
+  @extend %small-type;
+}
+
+p.smallest {
+  @extend %x-small-type;
+}

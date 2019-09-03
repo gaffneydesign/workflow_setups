@@ -29,10 +29,8 @@
         @warn '#{ $digits } has a unit.';
         @return $number;
     }
-    @if $digits > 0 {
-        @for $i from 1 through $digits {
-            $n: $n * 10;
-        }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
     }
     @if $mode == round {
         @return round($number * $n) / $n;
@@ -45,6 +43,7 @@
         @return $number;
     }
 }
+
 // Ceil a number to specified digits.
 //
 // @param  {Number} $number A number to round

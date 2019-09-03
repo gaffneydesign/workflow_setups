@@ -1,0 +1,12 @@
+// Browser Reset
+@import "./node_modules/normalize-scss/sass/normalize";
+@include normalize();
+@import 'reset/reset';
+// @import 'reset/type';
+
+// Main Components
+@import 'partials/base';
+@import 'partials/layout';
+@import 'partials/modules';
+
+/**/
