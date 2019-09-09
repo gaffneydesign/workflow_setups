@@ -1,86 +1,85 @@
 nav.global {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 5000;
-    background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5000;
+  background-color: #fff;
 
-    ul {
-        display: flex;
-        justify-content: space-around;
-        list-style-type: none;
-        max-width: 1200px;
-        margin: 0 auto;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    max-width: 1200px;
+    margin: 0 auto;
 
-        li {
-            a {
-                display: block;
+    li {
+      a {
+        display: block;
 
-                @extend %component-compact;
+        @extend %component-compact;
 
-                margin: 0;
-                border-color: transparent;
-                cursor: pointer;
-                border-radius: 0;
+        margin: 0;
+        border-color: transparent;
+        cursor: pointer;
+        border-radius: 0;
 
-                &:hover {
-                    background-color: tint(map-get($brand, 'prime-light'), 65);
-                }
-            }
+        &:hover {
+          background-color: tint(map-get($brand, 'prime-light'), 65);
         }
+      }
     }
+  }
 }
 
 .color-chips {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+
+  .color {
+    flex: 1 0 200px;
+    margin: beat(2) $el-pad;
+    min-height: beat(12);
+    max-width: 540px;
     display: flex;
-    flex-flow: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .color {
-        flex: 1 0 200px;
-        margin: beat(2) $el-pad;
-        min-height: beat(12);
-        max-width: 540px;
+  .primary {
+    @extend %component-compact;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    @extend %primary-outline;
+  }
 
-    .primary {
-        @extend %component-compact;
+  .accent {
+    @extend %component-compact;
 
-        @extend %primary-outline;
-    }
+    @extend %accent-outline;
+  }
 
-    .accent {
-        @extend %component-compact;
+  .secondary {
+    @extend %component-compact;
 
-        @extend %accent-outline;
-    }
+    @extend %secondary-outline;
+  }
 
-    .secondary {
-        @extend %component-compact;
+  .terciary {
+    @extend %component-compact;
 
-        @extend %secondary-outline;
-    }
+    @extend %terciary-outline;
+  }
 
-    .terciary {
-        @extend %component-compact;
+  .p-light {
+    @extend %component-compact;
 
-        @extend %terciary-outline;
-    }
+    @extend %prime-light-outline;
+  }
 
-    .p-light {
-        @extend %component-compact;
+  .p-dark {
+    @extend %component-compact;
 
-        @extend %prime-light-outline;
-    }
-
-    .p-dark {
-        @extend %component-compact;
-
-        @extend %prime-dark-outline;
-    }
+    @extend %prime-dark-outline;
+  }
 }

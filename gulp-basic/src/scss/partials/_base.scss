@@ -1,32 +1,32 @@
 @import 'class-lib';
 
-
-
 html {
   font-size: 1px;
 }
 
 body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: $base-font-size;
   line-height: $line-height;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1 {
   @extend %primary-head;
-  padding-bottom: beat(2);
-  margin-bottom: 1px;
 
-  color: var(--primary-clr, #f00);
+  color: var(--primary-clr, $brand-primary);
+  margin-bottom: 1px;
+  padding-bottom: beat(2);
 }
 
 h2 {
   @extend %xx-large-type;
+
   padding-bottom: beat(2);
 }
 
 h3 {
   @extend %x-large-type;
+
   padding-top: beat(2);
 }
 
@@ -34,9 +34,9 @@ h4 {
   @extend %large-type;
 }
 
-h5 {
+// h5 {
 
-}
+// }
 
 h6 {
   @extend %small-type;
@@ -51,14 +51,16 @@ p, ul, ol, dl, address {
   margin-bottom: beat();
 }
 
-p.lead {
-  @extend %large-type;
-}
+p {
+  &.lead {
+    @extend %large-type;
+  }
 
-p.small {
-  @extend %small-type;
-}
+  &.small {
+    @extend %small-type;
+  }
 
-p.smallest {
-  @extend %x-small-type;
+  &.smallest {
+    @extend %x-small-type;
+  }
 }
