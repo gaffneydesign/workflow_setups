@@ -3,7 +3,7 @@ body {
   grid-template-columns: minmax(290px, $screen-lg);
   grid-template-rows: auto auto auto;
   justify-content: center;
-  padding: 60rem 0;
+  padding: beat(12) 0;
 
   & > * {
     padding-left: $el-pad;
@@ -14,17 +14,26 @@ body {
 // Dev Properties
 .grid-underlay {
   background: url('../img/devbg_12c_full.png') center 0 repeat-y;
-  background-size: 100% ($type-rhythm-px * 1px);
+  background-size: 100% ($type-rhythm-px);
+}
 
-  @include responsive(xxs) {
-    background: url('../img/devbg_type_white.png') center 0 repeat-y;
-    background-size: 100% ($type-rhythm-px * 1px);
+@include responsive(xs) {
+  .grid-underlay {
+    background-size: 100% ($nrw-type-rhythm-px);
   }
+}
 
+@include responsive(xxs) {
+  .grid-underlay {
+    background: url('../img/devbg_type_white.png') center 0 repeat-y;
+    background-size: 100% ($nrw-type-rhythm-px);
+  }
+}
 
-  @include responsive(lg) {
+@include responsive(lg) {
+  .grid-underlay {
     background-color: $gray-light;
-    background-size: 1200px ($type-rhythm-px * 1px);
+    background-size: 1200px ($type-rhythm-px);
   }
 }
 
