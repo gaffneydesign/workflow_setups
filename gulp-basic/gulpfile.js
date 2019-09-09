@@ -15,7 +15,6 @@ const 	gulp = require('gulp'),
    		headerComment = require('gulp-header-comment'),
 		merge 		 = require('merge-stream'),
         // normalize    = require('normalize-scss'),
-		timestamp 	 = require('time-stamp'),
 		browserSync  = require('browser-sync').create();
 
 
@@ -28,11 +27,11 @@ var env,
 env = process.env.NODE_ENV || 'development';
 
 if (env === 'production') {
-    outputDir = 'builds/prod/';
+    outputDir = 'dist/prod/';
     sassStyle = 'compressed'
     productionBuild = true;
 } else {
-    outputDir = 'builds/dev/';
+    outputDir = 'dist/dev/';
     sassStyle = 'expanded'
     productionBuild = false;
 };
@@ -42,12 +41,12 @@ sass.compiler = require('node-sass');
 // Source Locations
 var paths = {
     ui: {
-        src: 'builds/dev/img/*',
-        dest: 'builds/prod/img/'
+        src: 'dist/dev/img/*',
+        dest: 'dist/prod/img/'
     },
     images: {
-        src: 'builds/dev/images/*',
-        dest: 'builds/prod/images/'
+        src: 'dist/dev/images/*',
+        dest: 'dist/prod/images/'
     },
     pages: {
         src: 'src/html/*.html',
@@ -68,7 +67,8 @@ var paths = {
 // Compile SCSS into CSS
 function style() {
 	return gulp.src(paths.styles.src)
-		.pipe(headerComment('CSS Compiled on ' + timestamp('[MM/DD/YYYY at HH:mm:ss]')))
+        .pipe(headerComment(`CSS Compiled on <%= moment().format('YYYY-MM-DD HH:mm:ss Z')%>
+            ============================================================================== *`))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: sassStyle}).on('error', sass.logError))
 		.pipe(sourcemaps.write())
@@ -108,11 +108,15 @@ function compression() {
         .pipe(gulpif(productionBuild, imagemin(imagemin.jpegtran({ progressive: true }))))
         .pipe(gulpif(productionBuild, gulp.dest(paths.images.dest)));
 
-    var imgfiles = gulp.src(paths.ui.src)
-        .pipe(gulpif(productionBuild, imagemin()))
-        .pipe(gulpif(productionBuild, gulp.dest(paths.ui.dest)));
+    return merge(imagefiles);
+}
 
-    return merge(imagefiles, imgfiles);
+function replenish() {
+    var imgfiles = gulp.src(paths.ui.src)
+        .pipe(imagemin())
+        .pipe(gulp.dest(paths.ui.dest));
+
+    return merge(imgfiles);
 }
 
 
@@ -126,15 +130,15 @@ function watch() {
     gulp.watch(paths.styles.src, style).on('save', browserSync.reload);
     gulp.watch(paths.scripts.src, scripts).on('save', browserSync.reload);
 	gulp.watch(paths.pages.src, pages).on('save', browserSync.reload);
-	gulp.watch(paths.ui.src, compression).on('change', browserSync.reload);
+    gulp.watch(paths.pages.srcdeep, pages).on('save', browserSync.reload);
 	gulp.watch(paths.images.src, compression).on('change', browserSync.reload);
 }
 
-var build = gulp.parallel(pages, style, compression, watch);
+var build = gulp.parallel(pages, style, scripts, compression, replenish, watch);
 
 exports.pages = pages;
 exports.images = compression;
-exports.ui = compression;
+exports.replenish = replenish;
 
 exports.scripts = scripts;
 exports.style = style;
