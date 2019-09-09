@@ -28,6 +28,48 @@
   @include typesetter(primary-head);
 }
 
+
+@include responsive(xs) {
+
+  %x-small-type {
+    @include nrwtypesetter(x-small-type);
+  }
+
+  %small-type {
+    @include nrwtypesetter(small-type);
+  }
+
+  %base {
+    font-weight: normal;
+  }
+
+  %large-type {
+    @include nrwtypesetter(large-type);
+  }
+
+  %x-large-type {
+    @include nrwtypesetter(x-large-type);
+  }
+
+  %xx-large-type {
+    @include nrwtypesetter(xx-large-type);
+  }
+
+  %primary-head {
+    @include nrwtypesetter(primary-head);
+  }
+
+
+
+};
+
+
+%container {
+  margin: 0 auto;
+  max-width: $screen-lg;
+  padding: 0 $el-pad;
+}
+
 %component {
   border: 1px solid $comp-border;
   border-radius: $border-radius-base;
