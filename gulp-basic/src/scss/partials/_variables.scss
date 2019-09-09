@@ -4,21 +4,13 @@
 // Color Palette
 $brand-primary: 	#681400;
 
+$white: #fff;
+$black: 000;
+
 // CSS Variables
 :root {
 	--primary-clr: #{$brand-primary};
 }
-
-// $link-color:		#50708a;
-// $link-color:		darken($brand-blue, 35);
-// $link-color-hover:	darken($link-color, 15);
-
-// Navbar links
-// $navbar-default-link-color:                $brand-brown;
-// $navbar-default-link-hover-color:          darken($navbar-default-link-color, 2.5);
-// $navbar-default-link-hover-bg:             lighten($brand-blue, 7);
-// $navbar-default-link-active-color:         #555;
-// $navbar-default-link-active-bg:            rgba(255, 255, 255, 0.35);
 
 //## Grayscale from Bootstrap.
 $gray-base: 		#000;
@@ -31,6 +23,17 @@ $gray-lighter: 		lighten($gray-base, 93.5%); // #eee
 // Lightest gray text-color on full white BG
 // For accessibility audit
 $gray-safe:			#767676;
+
+// $link-color:		#50708a;
+// $link-color:		darken($brand-blue, 35);
+// $link-color-hover:	darken($link-color, 15);
+
+// Navbar links
+// $navbar-default-link-color:                $brand-brown;
+// $navbar-default-link-hover-color:          darken($navbar-default-link-color, 2.5);
+// $navbar-default-link-hover-bg:             lighten($brand-blue, 7);
+// $navbar-default-link-active-color:         #555;
+// $navbar-default-link-active-bg:            rgba(255, 255, 255, 0.35);
 
 // Print Element Variables
 $print-base-light: 	#eee;
@@ -62,13 +65,13 @@ $border-radius-small:       3px;
 // Typography variables
 $line-height: 1.5;
 
-$base-font-size: 16rem;
+$base-font-size: 16px;
 $base-line-height: $line-height;
 // Minor Third Scale: 1.2
 $type-scale: 1.2;
 
 
-$nrw-font-size: 16px;
+$nrw-font-size: 14px;
 $nrw-line-height: $line-height;
 // Major Second Scale: 1.125
 $nrw-type-scale: 1.125;
@@ -85,6 +88,7 @@ $screen-lg:			1200px;
 $screen-md:			 992px;
 $screen-sm: 		 768px;
 $screen-xs:			 560px;
+$screen-min: 		 290px;
 
 $screen-md-max:		$screen-lg - 1;
 $screen-sm-max: 	$screen-md - 1;
