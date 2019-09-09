@@ -15,9 +15,9 @@
   // }
 
   @if lightness($color) > 50 {
-    @return #000000; // Lighter backgorund, return dark color
+    @return $black; // Lighter backgorund, return dark color
   } @else {
-    @return #ffffff; // Darker background, return light color
+    @return $white; // Darker background, return light color
   }
 }
 
@@ -44,9 +44,7 @@ $type-map: (
     @for $i from 1 through $exponent {
       $value: $value * $factor;
     }
-  }
-
-  @else if $exponent < 0 {
+  } @else if $exponent < 0 {
     @for $i from 1 through -$exponent {
       $value: $value / $factor;
     }
@@ -55,7 +53,7 @@ $type-map: (
   @return $value;
 }
 
-$type-rhythm-px: $base-font-size / 1rem * $line-height;
+$type-rhythm-px: $base-font-size * $line-height;
 
 @mixin typesetter($size--name) {
   $size--power: map-get($type-map, $size--name);
@@ -65,8 +63,9 @@ $type-rhythm-px: $base-font-size / 1rem * $line-height;
   // Calculate the adjustments
   $size-adjustor: power($size--power, 1, $type-scale);
   $height-adjustor: power($size--power * -1, $line-height, $type-scale);
+  $nrw-height-adjustor: power($size--power * -1, $nrw-line-height, $nrw-type-scale);
 
-  $fz-pixels: $size-adjustor * $base-font-size / 1rem;
+  $fz-pixels: $size-adjustor * $base-font-size;
 
   @if $fz-pixels > $type-rhythm-px * 0.85 {
     $height-adjustor: $height-adjustor * 1.5;
@@ -78,12 +77,44 @@ $type-rhythm-px: $base-font-size / 1rem * $line-height;
 
   $chrome-hack: 0.001;
 
-  font-size: $size-adjustor * $base-font-size;
+  font-size: $size-adjustor * 1em;
   line-height: $height-adjustor + $chrome-hack;
+
 }
 
+$nrw-type-rhythm-px: $nrw-font-size * $line-height;
+
+@mixin nrwtypesetter($size--name) {
+  $size--power: map-get($type-map, $size--name);
+
+  // @debug '----' $size--name '----';
+
+  // Calculate the adjustments
+  $size-adjustor: power($size--power, 1, $nrw-type-scale);
+  $height-adjustor: power($size--power * -1, $line-height, $nrw-type-scale);
+
+  $fz-pixels: $size-adjustor * $nrw-font-size;
+
+  @if $fz-pixels > $nrw-type-rhythm-px * 0.85 {
+    $height-adjustor: $height-adjustor * 1.5;
+  }
+
+  @if $fz-pixels < $nrw-font-size {
+    $height-adjustor: $height-adjustor * 0.75;
+  }
+
+  $chrome-hack: 0.001;
+
+  font-size: $size-adjustor * 1em;
+  line-height: $height-adjustor + $chrome-hack;
+
+}
+
+
+
+
 @function beat($beats: 4) {
-  @return $line-height * $base-font-size / 4 * $beats;
+  @return $line-height / 4 * $beats * 1rem;
 }
 
 @mixin clearfix {
