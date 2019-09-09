@@ -23,21 +23,23 @@
 
 $brand: (
   primary: $brand-primary,
-  prime-light: tint($brand-primary, 50),
-  prime-dark: shade($brand-primary, 50),
-  accent: adjust-hue($brand-primary, 180),
-  secondary: adjust-hue($brand-primary, 135),
-  terciary: adjust-hue($brand-primary, -135));
+  prime-light:  tint($brand-primary, 50),
+  prime-dark:   shade($brand-primary, 50),
+  accent:       adjust-hue($brand-primary, 180),
+  secondary:    adjust-hue($brand-primary, 135),
+  terciary:     adjust-hue($brand-primary, -135)
+);
 
 // Set the Type Size names, assign placement on the scale
 $type-map: (
   x-small-type: -2,
-  small-type: -1,
-  base: 0,
-  large-type: 1,
-  x-large-type: 2,
+  small-type:   -1,
+  base:          0,
+  large-type:    1,
+  x-large-type:  2,
   xx-large-type: 3,
-  primary-head: 4);
+  primary-head:  4
+);
 
 @function power($exponent, $value, $factor) {
   @if $exponent > 0 {
@@ -110,12 +112,23 @@ $nrw-type-rhythm-px: $nrw-font-size * $line-height;
 
 }
 
-
-
-
 @function beat($beats: 4) {
   @return $line-height / 4 * $beats * 1rem;
 }
+
+// Set FontAwesome
+@mixin set-fa($fa-char: '024', $weight: 700) {
+
+    &:before {
+        font-family: 'Font Awesome 5 Free';
+        content: #{'"\\f' + $fa-char + '"'};
+        margin-right: 0.35em;
+        font-weight: $weight;
+        @if $fa-char == '024' {
+            color: red;
+        }
+    }
+} 
 
 @mixin clearfix {
   &:after {
