@@ -40,8 +40,8 @@ sass.compiler = require('node-sass');
 // Source Locations
 var paths = {
     ui: {
-        src: 'dist/dev/img/*',
-        dest: 'dist/prod/img/'
+        src: 'src/img/*',
+        dest: outputDir + 'img/'
     },
     images: {
         src: 'dist/dev/images/*',
