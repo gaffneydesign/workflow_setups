@@ -14,7 +14,6 @@ const 	gulp = require('gulp'),
 	    source       = require('vinyl-source-stream')
    		headerComment = require('gulp-header-comment'),
 		merge 		 = require('merge-stream'),
-        // normalize    = require('normalize-scss'),
 		browserSync  = require('browser-sync').create();
 
 
@@ -67,7 +66,7 @@ var paths = {
 // Compile SCSS into CSS
 function style() {
 	return gulp.src(paths.styles.src)
-        .pipe(headerComment(`CSS Compiled on <%= moment().format('YYYY-MM-DD HH:mm:ss Z')%>
+        .pipe(headerComment(`CSS Compiled on: <%= moment().format('YYYY-MM-DD HH:mm:ss Z')%>
             ============================================================================== *`))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: sassStyle}).on('error', sass.logError))
@@ -116,7 +115,10 @@ function replenish() {
         .pipe(imagemin())
         .pipe(gulp.dest(paths.ui.dest));
 
-    return merge(imgfiles);
+    var icons = gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*')
+        .pipe(gulp.dest(outputDir+'webfonts/'));
+
+    return merge(imgfiles,icons);
 }
 
 
