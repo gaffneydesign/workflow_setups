@@ -1,132 +1,124 @@
-@import 'mixins';
+@import "mixins";
 
+/* Typography Classes */
+/**********************/
 %x-small-type {
-  @include typesetter(x-small-type);
+    @include typesetter(x-small-type);
 }
 
 %small-type {
-  @include typesetter(small-type);
-}
-
-%base {
-  font-weight: normal;
+    @include typesetter(small-type);
 }
 
 %large-type {
-  @include typesetter(large-type);
+    @include typesetter(large-type);
 }
 
 %x-large-type {
-  @include typesetter(x-large-type);
+    @include typesetter(x-large-type);
 }
 
 %xx-large-type {
-  @include typesetter(xx-large-type);
+    @include typesetter(xx-large-type);
 }
 
 %primary-head {
-  @include typesetter(primary-head);
+    @include typesetter(primary-head);
+}
+
+@include responsive(xs) {
+    %x-small-type {
+        @include nrwtypesetter(x-small-type);
+    }
+
+    %small-type {
+        @include nrwtypesetter(small-type);
+    }
+
+    %large-type {
+        @include nrwtypesetter(large-type);
+    }
+
+    %x-large-type {
+        @include nrwtypesetter(x-large-type);
+    }
+
+    %xx-large-type {
+        @include nrwtypesetter(xx-large-type);
+    }
+
+    %primary-head {
+        @include nrwtypesetter(primary-head);
+    }
 }
 
 
-@include responsive(xs) {
-
-  %x-small-type {
-    @include nrwtypesetter(x-small-type);
-  }
-
-  %small-type {
-    @include nrwtypesetter(small-type);
-  }
-
-  %base {
-    font-weight: normal;
-  }
-
-  %large-type {
-    @include nrwtypesetter(large-type);
-  }
-
-  %x-large-type {
-    @include nrwtypesetter(x-large-type);
-  }
-
-  %xx-large-type {
-    @include nrwtypesetter(xx-large-type);
-  }
-
-  %primary-head {
-    @include nrwtypesetter(primary-head);
-  }
-
-
-
-};
-
-
+/* Element Classes    */
+/**********************/
 %container {
-  margin: 0 auto;
-  max-width: $screen-lg;
-  padding: 0 $el-pad;
+    margin: 0 auto;
+    max-width: $screen-lg;
 }
 
 %component {
-  border: 1px solid $comp-border;
-  border-radius: $border-radius-base;
-  margin: beat(2) 0;
-  padding: calc(#{beat(2)} - 1px) $el-pad;
+    padding: calc(#{beat(2)} - 1px) $el-pad;
+    margin: beat(2) 0;
+    border: 1px solid #000;
+    border-radius: $border-radius-base;
 }
 
 %component-compact {
-  @extend %component;
+    @extend %component;
 
-  padding: calc(#{beat(1)} - 1px) $el-pad;
+    padding: calc(#{beat(1)} - 1px) $el-pad;
 }
 
+/* Color Classes      */
+/**********************/
 %primary-solid {
-  @include comp-colors-solid(map-get($brand, 'primary'));
+    @include comp-colors-solid(map-get($brand, "primary"));
 }
 
 %primary-outline {
-  @include comp-colors-outline(map-get($brand, 'primary'));
+    @include comp-colors-outline(map-get($brand, "primary"));
 }
 
 %prime-dark-solid {
-  @include comp-colors-solid(map-get($brand, 'prime-dark'));
+    @include comp-colors-solid(map-get($brand, "prime-dark"));
 }
 
 %prime-dark-outline {
-  @include comp-colors-outline(map-get($brand, 'prime-dark'));
+    @include comp-colors-outline(map-get($brand, "prime-dark"));
 }
 
 %prime-light-solid {
-  @include comp-colors-solid(map-get($brand, 'prime-light'));
+    @include comp-colors-solid(map-get($brand, "prime-light"));
 }
 
 %prime-light-outline {
-  @include comp-colors-outline(map-get($brand, 'prime-light'));
+    @include comp-colors-outline(map-get($brand, "prime-light"));
 }
 
 %secondary-solid {
-  @include comp-colors-solid(map-get($brand, 'secondary'));
+    @include comp-colors-solid(map-get($brand, "secondary"));
 }
 
 %secondary-outline {
-  @include comp-colors-outline(map-get($brand, 'secondary'));
+    @include comp-colors-outline(map-get($brand, "secondary"));
 }
 
 %terciary-solid {
-  @include comp-colors-solid(map-get($brand, 'terciary'));
+    @include comp-colors-solid(map-get($brand, "terciary"));
 }
 
 %terciary-outline {
-  @include comp-colors-outline(map-get($brand, 'terciary'));
+    @include comp-colors-outline(map-get($brand, "terciary"));
 }
 
 %accent-solid {
-  @include comp-colors-solid(map-get($brand, 'accent'));
+    @include comp-colors-solid(map-get($brand, "accent"));
 }
 
 %accent-outline {
-  @include comp-colors-outline(map-get($brand, 'accent'));
+    @include comp-colors-outline(map-get($brand, "accent"));
 }
