@@ -22,7 +22,6 @@ var env,
     outputDir,
     productionBuild,
     sassStyle,
-    pagesDeep;
 env = process.env.NODE_ENV || 'development';
 
 if (env === 'production') {
@@ -49,7 +48,7 @@ var paths = {
     },
     pages: {
         src: 'src/html/*.html',
-        srcdeep: 'src/html/**/*.html',
+        includes: 'src/includes/*.html',
         dest: outputDir
     },
     styles: {
@@ -132,7 +131,7 @@ function watch() {
     gulp.watch(paths.styles.src, style).on('save', browserSync.reload);
     gulp.watch(paths.scripts.src, scripts).on('save', browserSync.reload);
 	gulp.watch(paths.pages.src, pages).on('save', browserSync.reload);
-    gulp.watch(paths.pages.srcdeep, pages).on('save', browserSync.reload);
+    gulp.watch(paths.pages.includes, pages).on('save', browserSync.reload);
 	gulp.watch(paths.images.src, compression).on('change', browserSync.reload);
 }
 
