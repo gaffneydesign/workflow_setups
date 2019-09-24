@@ -13,28 +13,39 @@ body {
 
 // Dev Properties
 .grid-underlay {
-  background: url('../img/devbg_12c_full.png') center 0 repeat-y;
-  background-size: 100% ($type-rhythm-px);
+    background: url("../img/devbg_12c_full.png") center 0 repeat-y;
+    background-size: 100% $type-rhythm-px;
 }
 
 @include responsive(xs) {
-  .grid-underlay {
-    background-size: 100% ($nrw-type-rhythm-px);
-  }
+    .grid-underlay {
+        background-size: 100% $nrw-type-rhythm-px;
+    }
 }
+
 
 @include responsive(xxs) {
-  .grid-underlay {
-    background: url('../img/devbg_type_white.png') center 0 repeat-y;
-    background-size: 100% ($nrw-type-rhythm-px);
-  }
+    body {
+        padding-top: beat(10);
+    }
+
+    .grid-underlay {
+        background: url("../img/devbg_type_white.png") center 0 repeat-y;
+        background-size: 100% $nrw-type-rhythm-px;
+    }
 }
 
+
 @include responsive(lg) {
-  .grid-underlay {
-    background-color: $gray-light;
-    background-size: 1200px ($type-rhythm-px);
-  }
+    .grid-underlay {
+        background-color: $gray-light;
+        background-size: 1200px $type-rhythm-px;
+    }
+}
+
+
+.container {
+    @extend %container;
 }
 
 .main-content {
