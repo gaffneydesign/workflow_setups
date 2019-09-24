@@ -1,5 +1,7 @@
 # files
 .gitignore
+.DS_Store
+**/.DS_Store
 
 # file types
 *.sublime-project
