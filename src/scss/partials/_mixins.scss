@@ -1,245 +1,243 @@
-@import 'variables';
-@import 'decimal';
+@import "variables";
+@import "decimal";
 
 @function tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
+    @return mix(white, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
-  @return mix(black, $color, $percentage);
+    @return mix(black, $color, $percentage);
 }
 
 @function set-text-color($color) {
-  // @if lightness($color) < 75 and lightness($color) > 25 {
-  //   @warn '`#{$color}` Bad BG choice for `$color`';
-  // }
+    // @if lightness($color) < 75 and lightness($color) > 25 {
+    //   @warn '`#{$color}` Bad BG choice for `$color`';
+    // }
 
-  @if lightness($color) > 50 {
-    @return $black; // Lighter backgorund, return dark color
-  } @else {
-    @return $white; // Darker background, return light color
-  }
+    @if lightness($color) > 50 {
+        @return $black;
+
+        // Lighter backgorund, return dark color
+    }
+    @else {
+        @return $white;
+
+        // Darker background, return light color
+    }
 }
 
-$brand: (
-  primary: $brand-primary,
-  prime-light:  tint($brand-primary, 50),
-  prime-dark:   shade($brand-primary, 50),
-  accent:       adjust-hue($brand-primary, 180),
-  secondary:    adjust-hue($brand-primary, 135),
-  terciary:     adjust-hue($brand-primary, -135)
-);
+$brand: (primary: $brand-primary, prime-light: tint($brand-primary, 50), prime-dark: shade($brand-primary, 50), accent: adjust-hue($brand-primary, 180), secondary: adjust-hue($brand-primary, 135), terciary: adjust-hue($brand-primary, -135));
 
 // Set the Type Size names, assign placement on the scale
 $type-map: (
-  x-small-type: -2,
-  small-type:   -1,
-  base:          0,
-  large-type:    1,
-  x-large-type:  2,
-  xx-large-type: 3,
-  primary-head:  4
+     x-small-type: -2, 
+       small-type: -1, 
+             base:  0, 
+       large-type:  1, 
+     x-large-type:  2, 
+    xx-large-type:  3, 
+     primary-head:  4
 );
 
 @function power($exponent, $value, $factor) {
-  @if $exponent > 0 {
-    @for $i from 1 through $exponent {
-      $value: $value * $factor;
+    @if $exponent > 0 {
+        @for $i from 1 through $exponent {
+            $value: $value * $factor;
+        }
     }
-  } @else if $exponent < 0 {
-    @for $i from 1 through -$exponent {
-      $value: $value / $factor;
+    @else if $exponent < 0 {
+        @for $i from 1 through -$exponent {
+            $value: $value / $factor;
+        }
     }
-  }
 
-  @return $value;
+    @return $value;
 }
 
 $type-rhythm-px: $base-font-size * $line-height;
 
 @mixin typesetter($size--name) {
-  $size--power: map-get($type-map, $size--name);
+    $size--power: map-get($type-map, $size--name);
 
-  // @debug '----' $size--name '----';
+    // @debug '----' $size--name '----';
 
-  // Calculate the adjustments
-  $size-adjustor: power($size--power, 1, $type-scale);
-  $height-adjustor: power($size--power * -1, $line-height, $type-scale);
-  $nrw-height-adjustor: power($size--power * -1, $nrw-line-height, $nrw-type-scale);
+    // Calculate the adjustments
+    $size-adjustor: power($size--power, 1, $type-scale);
+    $height-adjustor: power($size--power * -1, $line-height, $type-scale);
+    $nrw-height-adjustor: power($size--power * -1, $nrw-line-height, $nrw-type-scale);
 
-  $fz-pixels: $size-adjustor * $base-font-size;
+    $fz-pixels: $size-adjustor * $base-font-size;
 
-  @if $fz-pixels > $type-rhythm-px * 0.85 {
-    $height-adjustor: $height-adjustor * 1.5;
-  }
+    @if $fz-pixels > $type-rhythm-px * 0.85 {
+        $height-adjustor: $height-adjustor * 1.5;
+    }
 
-  @if $fz-pixels < $base-font-size {
-    $height-adjustor: $height-adjustor * 0.75;
-  }
+    @if $fz-pixels < $base-font-size {
+        $height-adjustor: $height-adjustor * 0.75;
+    }
 
-  $chrome-hack: 0.001;
+    $chrome-hack: 0.001;
 
-  font-size: $size-adjustor * 1em;
-  line-height: $height-adjustor + $chrome-hack;
-
+    font-size: $size-adjustor * 1em;
+    line-height: $height-adjustor + $chrome-hack;
 }
 
 $nrw-type-rhythm-px: $nrw-font-size * $line-height;
 
 @mixin nrwtypesetter($size--name) {
-  $size--power: map-get($type-map, $size--name);
+    $size--power: map-get($type-map, $size--name);
 
-  // @debug '----' $size--name '----';
+    // @debug '----' $size--name '----';
 
-  // Calculate the adjustments
-  $size-adjustor: power($size--power, 1, $nrw-type-scale);
-  $height-adjustor: power($size--power * -1, $line-height, $nrw-type-scale);
+    // Calculate the adjustments
+    $size-adjustor: power($size--power, 1, $nrw-type-scale);
+    $height-adjustor: power($size--power * -1, $line-height, $nrw-type-scale);
 
-  $fz-pixels: $size-adjustor * $nrw-font-size;
+    $fz-pixels: $size-adjustor * $nrw-font-size;
 
-  @if $fz-pixels > $nrw-type-rhythm-px * 0.85 {
-    $height-adjustor: $height-adjustor * 1.5;
-  }
+    @if $fz-pixels > $nrw-type-rhythm-px * 0.85 {
+        $height-adjustor: $height-adjustor * 1.5;
+    }
 
-  @if $fz-pixels < $nrw-font-size {
-    $height-adjustor: $height-adjustor * 0.75;
-  }
+    @if $fz-pixels < $nrw-font-size {
+        $height-adjustor: $height-adjustor * 0.75;
+    }
 
-  $chrome-hack: 0.001;
+    $chrome-hack: 0.001;
 
-  font-size: $size-adjustor * 1em;
-  line-height: $height-adjustor + $chrome-hack;
-
+    font-size: $size-adjustor * 1em;
+    line-height: $height-adjustor + $chrome-hack;
 }
 
 @function beat($beats: 4) {
-  @return $line-height / 4 * $beats * 1rem;
+    @return $line-height / 4 * $beats * 1rem;
 }
 
 // Set FontAwesome
-@mixin set-fa($fa-char: '024', $weight: 700) {
-
+@mixin set-fa($fa-char: "024", $weight: 700) {
     &:before {
         font-family: 'Font Awesome 5 Free';
         content: #{'"\\f' + $fa-char + '"'};
         margin-right: 0.35em;
         font-weight: $weight;
-        @if $fa-char == '024' {
+
+        @if $fa-char == "024" {
             color: red;
         }
     }
-} 
+}
+
+// Sliders
+@mixin slideopen($maxh) {
+    max-height: $maxh;
+    overflow: visible;
+    transition: max-height 0.25s ease-in;
+}
+
+@mixin slideclose($maxh) {
+    max-height: $maxh;
+    overflow: hidden;
+    transition: max-height 0.15s ease-out;
+}
 
 @mixin clearfix {
-  &:after {
-    clear: both;
-    content: '';
-    display: table;
-  }
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+    }
 }
 
 @mixin strap-stretch {
-  margin-left: $el-pad * -1;
-  margin-right: $el-pad * -1;
-  padding-left: $el-pad;
-  padding-right: $el-pad;
+    margin-left: $el-pad * -1;
+    margin-right: $el-pad * -1;
+    padding-left: $el-pad;
+    padding-right: $el-pad;
 }
 
 @mixin comp-colors-solid($state--color) {
-  background-color: $state--color;
-  border-color: darken($state--color, 10);
-  color: set-text-color($state--color);
+    background-color: $state--color;
+    border-color: darken($state--color, 10);
+    color: set-text-color($state--color);
 }
 
 @mixin comp-colors-outline($state--color) {
-  background-color: tint($state--color, 80);
-  border-color: darken($state--color, 10);
-  color: darken($state--color, 15);
+    background-color: tint($state--color, 80);
+    border-color: darken($state--color, 10);
+    color: darken($state--color, 15);
 }
 
 //  For development only
 @mixin shaded($color: 156, $opacity: 0.5) {
-  background-color: rgba($color, $color, $color, $opacity);
+    background-color: rgba($color, $color, $color, $opacity);
 }
 
 // Responsive breakpoint generation
 @mixin responsive($width) {
-  // Only 1200px and larger
-  @if $width == lg {
-    @media only screen and (min-width: $screen-lg) {
-      @content;
+    // Only 1200px and larger
+    @if $width == lg {
+        @media only screen and (min-width: $screen-lg) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == md {
-    @media only screen and (max-width: $screen-md-max) {
-      @content;
+    @else if $width == md {
+        @media only screen and (max-width: $screen-md-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == md-up {
-    @media only screen and (min-width: $screen-md) {
-      @content;
+    @else if $width == md-up {
+        @media only screen and (min-width: $screen-md) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == md-only {
-    @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
-      @content;
+    @else if $width == md-only {
+        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == sm {
-    @media only screen and (max-width: $screen-sm-max) {
-      @content;
+    @else if $width == sm {
+        @media only screen and (max-width: $screen-sm-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == sm-up {
-    @media only screen and (min-width: $screen-sm) {
-      @content;
+    @else if $width == sm-up {
+        @media only screen and (min-width: $screen-sm) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == sm-only {
-    @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
-      @content;
+    @else if $width == sm-only {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == xs {
-    @media only screen and (max-width: $screen-xs-max) {
-      @content;
+    @else if $width == xs {
+        @media only screen and (max-width: $screen-xs-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == xs-up {
-    @media only screen and (min-width: $screen-xs) {
-      @content;
+    @else if $width == xs-up {
+        @media only screen and (min-width: $screen-xs) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == xs-only {
-    @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-      @content;
+    @else if $width == xs-only {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == xxs {
-    @media only screen and (max-width: $screen-xs - 1) {
-      @content;
+    @else if $width == xxs {
+        @media only screen and (max-width: $screen-xs - 1) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == sm-md {
-    @media only screen and (min-width: $screen-sm) and (max-width: $screen-md-max) {
-      @content;
+    @else if $width == sm-md {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-md-max) {
+            @content;
+        }
     }
-  }
-
-  @else if $width == phablet {
-    @media only screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
-      @content;
+    @else if $width == phablet {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
+            @content;
+        }
     }
-  }
 }
