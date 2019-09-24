@@ -1,7 +1,11 @@
-**/.DS_Store
-**/node_modules
-**/dist
-**/.tmp
-**/.sass-cache
-**/*.sublime-project
-**/*.sublime-workspace
+# files
+.gitignore
+
+# file types
+*.sublime-project
+*.sublime-workspace
+
+# folders
+dist/
+node_modules/
+.sass-cache/
