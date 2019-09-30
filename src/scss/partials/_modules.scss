@@ -25,61 +25,338 @@ nav.global {
         border-radius: 0;
 
         &:hover {
-          background-color: tint(map-get($brand, 'prime-light'), 65);
+          background-color: map-get($accent, "10");
         }
       }
     }
   }
 }
 
-.color-chips {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
+.test-comp-x {
+  @extend %component;
 
-  .color {
-    flex: 1 0 200px;
-    margin: beat(2) $el-pad;
-    min-height: beat(12);
-    max-width: 540px;
+  @extend %primary-solid;
+}
+
+.test-comp-y {
+  @extend %component;
+
+  @extend %primary-outline;
+}
+
+$swatch-measure: beat(8);
+
+.color-chart {
+  & > div {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    flex-flow: wrap;
+    justify-content: space-around;
+    margin: 0 ($el-pad * -1) beat(2);
 
-  .primary {
-    @extend %component-compact;
+    h3 {
+      flex: 0 0 100%;
+      padding-left: $el-pad;
+      padding-bottom: calc(#{beat(1)} - 1px);
+      border-bottom: 1px solid $gray;
+      margin-bottom: beat(2);
+    }
 
-    @extend %primary-outline;
-  }
+    .swatch {
+      @extend %component;
 
-  .accent {
-    @extend %component-compact;
+      width: $swatch-measure;
+      height: $swatch-measure;
+      border-radius: 50%;
+      border-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    @extend %accent-outline;
-  }
+    &.shading {
+      .color:first-of-type .swatch {
+        background-color: map-get($grayscale, "10");
+        color: set-text-color(map-get($grayscale, "10"));
+      }
 
-  .secondary {
-    @extend %component-compact;
+      .color:nth-child(3) .swatch {
+        background-color: map-get($grayscale, "20");
+        color: set-text-color(map-get($grayscale, "20"));
+      }
 
-    @extend %secondary-outline;
-  }
+      .color:nth-child(4) .swatch {
+        background-color: map-get($grayscale, "30");
+        color: set-text-color(map-get($grayscale, "30"));
+      }
 
-  .terciary {
-    @extend %component-compact;
+      .color:nth-child(5) .swatch {
+        background-color: map-get($grayscale, "40");
+        color: set-text-color(map-get($grayscale, "40"));
+      }
 
-    @extend %terciary-outline;
-  }
+      .color:nth-child(6) .swatch {
+        background-color: map-get($grayscale, "50");
+        color: set-text-color(map-get($grayscale, "50"));
+      }
 
-  .p-light {
-    @extend %component-compact;
+      .color:nth-child(7) .swatch {
+        background-color: map-get($grayscale, "base");
+        color: set-text-color(map-get($grayscale, "base"));
+      }
 
-    @extend %prime-light-outline;
-  }
+      .color:nth-child(8) .swatch {
+        background-color: map-get($grayscale, "60");
+        color: set-text-color(map-get($grayscale, "60"));
+      }
 
-  .p-dark {
-    @extend %component-compact;
+      .color:nth-child(9) .swatch {
+        background-color: map-get($grayscale, "70");
+        color: set-text-color(map-get($grayscale, "70"));
+      }
 
-    @extend %prime-dark-outline;
+      .color:nth-child(10) .swatch {
+        background-color: map-get($grayscale, "80");
+        color: set-text-color(map-get($grayscale, "80"));
+      }
+
+      .color:nth-child(11) .swatch {
+        background-color: map-get($grayscale, "90");
+        color: set-text-color(map-get($grayscale, "90"));
+      }
+
+      .color:nth-child(12) .swatch {
+        background-color: map-get($grayscale, "100");
+        color: set-text-color(map-get($grayscale, "100"));
+      }
+    }
+
+    &.primary {
+      .color:first-of-type .swatch {
+        background-color: map-get($primary, "10");
+        color: set-text-color(map-get($primary, "10"));
+      }
+
+      .color:nth-child(3) .swatch {
+        background-color: map-get($primary, "20");
+        color: set-text-color(map-get($primary, "20"));
+      }
+
+      .color:nth-child(4) .swatch {
+        background-color: map-get($primary, "30");
+        color: set-text-color(map-get($primary, "30"));
+      }
+
+      .color:nth-child(5) .swatch {
+        background-color: map-get($primary, "40");
+        color: set-text-color(map-get($primary, "40"));
+      }
+
+      .color:nth-child(6) .swatch {
+        background-color: map-get($primary, "50");
+        color: set-text-color(map-get($primary, "50"));
+      }
+
+      .color:nth-child(7) .swatch {
+        @extend %primary-solid;
+        // Designate Primary Brand color
+        border: 3px solid #000;
+      }
+
+      .color:nth-child(8) .swatch {
+        background-color: map-get($primary, "70");
+        color: set-text-color(map-get($primary, "70"));
+      }
+
+      .color:nth-child(9) .swatch {
+        background-color: map-get($primary, "80");
+        color: set-text-color(map-get($primary, "80"));
+      }
+
+      .color:nth-child(10) .swatch {
+        background-color: map-get($primary, "90");
+        color: set-text-color(map-get($primary, "90"));
+      }
+
+      .color:nth-child(11) .swatch {
+        background-color: map-get($primary, "100");
+        color: set-text-color(map-get($primary, "100"));
+      }
+
+      .color:nth-child(12) .swatch {
+        background-color: map-get($primary, "100");
+        color: set-text-color(map-get($primary, "100"));
+      }
+    }
+
+    &.accent {
+      .color:first-of-type .swatch {
+        background-color: map-get($accent, "10");
+        color: set-text-color(map-get($accent, "10"));
+      }
+
+      .color:nth-child(3) .swatch {
+        background-color: map-get($accent, "20");
+        color: set-text-color(map-get($accent, "20"));
+      }
+
+      .color:nth-child(4) .swatch {
+        background-color: map-get($accent, "30");
+        color: set-text-color(map-get($accent, "30"));
+      }
+
+      .color:nth-child(5) .swatch {
+        background-color: map-get($accent, "40");
+        color: set-text-color(map-get($accent, "40"));
+      }
+
+      .color:nth-child(6) .swatch {
+        background-color: map-get($accent, "50");
+        color: set-text-color(map-get($accent, "50"));
+      }
+
+      .color:nth-child(7) .swatch {
+        background-color: map-get($accent, "base");
+        color: set-text-color(map-get($accent, "base"));
+      }
+
+      .color:nth-child(8) .swatch {
+        background-color: map-get($accent, "60");
+        color: set-text-color(map-get($accent, "60"));
+      }
+
+      .color:nth-child(9) .swatch {
+        background-color: map-get($accent, "70");
+        color: set-text-color(map-get($accent, "70"));
+      }
+
+      .color:nth-child(10) .swatch {
+        background-color: map-get($accent, "80");
+        color: set-text-color(map-get($accent, "80"));
+      }
+
+      .color:nth-child(11) .swatch {
+        background-color: map-get($accent, "90");
+        color: set-text-color(map-get($accent, "90"));
+      }
+
+      .color:nth-child(12) .swatch {
+        background-color: map-get($accent, "100");
+        color: set-text-color(map-get($accent, "100"));
+      }
+    }
+
+    &.secondary {
+      .color:first-of-type .swatch {
+        background-color: map-get($secondary, "10");
+        color: set-text-color(map-get($secondary, "10"));
+      }
+
+      .color:nth-child(3) .swatch {
+        background-color: map-get($secondary, "20");
+        color: set-text-color(map-get($secondary, "20"));
+      }
+
+      .color:nth-child(4) .swatch {
+        background-color: map-get($secondary, "30");
+        color: set-text-color(map-get($secondary, "30"));
+      }
+
+      .color:nth-child(5) .swatch {
+        background-color: map-get($secondary, "40");
+        color: set-text-color(map-get($secondary, "40"));
+      }
+
+      .color:nth-child(6) .swatch {
+        background-color: map-get($secondary, "50");
+        color: set-text-color(map-get($secondary, "50"));
+      }
+
+      .color:nth-child(7) .swatch {
+        background-color: map-get($secondary, "base");
+        color: set-text-color(map-get($secondary, "base"));
+      }
+
+      .color:nth-child(8) .swatch {
+        background-color: map-get($secondary, "60");
+        color: set-text-color(map-get($secondary, "60"));
+      }
+
+      .color:nth-child(9) .swatch {
+        background-color: map-get($secondary, "70");
+        color: set-text-color(map-get($secondary, "70"));
+      }
+
+      .color:nth-child(10) .swatch {
+        background-color: map-get($secondary, "80");
+        color: set-text-color(map-get($secondary, "80"));
+      }
+
+      .color:nth-child(11) .swatch {
+        background-color: map-get($secondary, "90");
+        color: set-text-color(map-get($secondary, "90"));
+      }
+
+      .color:nth-child(12) .swatch {
+        background-color: map-get($secondary, "100");
+        color: set-text-color(map-get($secondary, "100"));
+      }
+    }
+
+    &.tertiary {
+      .color:first-of-type .swatch {
+        background-color: map-get($tertiary, "10");
+        color: set-text-color(map-get($tertiary, "10"));
+      }
+
+      .color:nth-child(3) .swatch {
+        background-color: map-get($tertiary, "20");
+        color: set-text-color(map-get($tertiary, "20"));
+      }
+
+      .color:nth-child(4) .swatch {
+        background-color: map-get($tertiary, "30");
+        color: set-text-color(map-get($tertiary, "30"));
+      }
+
+      .color:nth-child(5) .swatch {
+        background-color: map-get($tertiary, "40");
+        color: set-text-color(map-get($tertiary, "40"));
+      }
+
+      .color:nth-child(6) .swatch {
+        background-color: map-get($tertiary, "50");
+        color: set-text-color(map-get($tertiary, "50"));
+      }
+
+      .color:nth-child(7) .swatch {
+        background-color: map-get($tertiary, "base");
+        color: set-text-color(map-get($tertiary, "base"));
+      }
+
+      .color:nth-child(8) .swatch {
+        background-color: map-get($tertiary, "60");
+        color: set-text-color(map-get($tertiary, "60"));
+      }
+
+      .color:nth-child(9) .swatch {
+        background-color: map-get($tertiary, "70");
+        color: set-text-color(map-get($tertiary, "70"));
+      }
+
+      .color:nth-child(10) .swatch {
+        background-color: map-get($tertiary, "80");
+        color: set-text-color(map-get($tertiary, "80"));
+      }
+
+      .color:nth-child(11) .swatch {
+        background-color: map-get($tertiary, "90");
+        color: set-text-color(map-get($tertiary, "90"));
+      }
+
+      .color:nth-child(12) .swatch {
+        background-color: map-get($tertiary, "100");
+        color: set-text-color(map-get($tertiary, "100"));
+      }
+    }
   }
 }

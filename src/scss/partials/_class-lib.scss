@@ -83,50 +83,67 @@
   padding: calc(#{beat(1)} - 1px) $el-pad;
 }
 
+
+@mixin classMaker($colorMap, $mapName) {
+  @each $name, $colorVal in $colorMap {
+    %#{$mapName}-#{$name} {
+      color: $colorVal;
+    }
+    %#{$mapName}-bg-#{$name} {
+      background-color: $colorVal;
+    }
+    %#{$mapName}-brd-#{$name} {
+      border-color: $colorVal;
+    }
+  }
+}
+@include classMaker($primary,'primary');
+@include classMaker($accent,'accent');
+@include classMaker($secondary,'secondary');
+@include classMaker($tertiary,'tertiary');
+
+
+@mixin comp-colors-solid($state--color) {
+  background-color: map-get($state--color, 'base');
+  border-color: map-get($state--color, '10');
+  color: set-text-color(map-get($state--color, 'base'));
+}
+
+@mixin comp-colors-outline($state--color) {
+  background-color: map-get($state--color, '10');
+  border-color: map-get($state--color, 'base');
+  color: set-text-color(map-get($state--color, '10'));
+}
+
+
 %primary-solid {
-  @include comp-colors-solid(map-get($brand, 'primary'));
+  @include comp-colors-solid($primary);
 }
 
 %primary-outline {
-  @include comp-colors-outline(map-get($brand, 'primary'));
-}
-
-%prime-dark-solid {
-  @include comp-colors-solid(map-get($brand, 'prime-dark'));
-}
-
-%prime-dark-outline {
-  @include comp-colors-outline(map-get($brand, 'prime-dark'));
-}
-
-%prime-light-solid {
-  @include comp-colors-solid(map-get($brand, 'prime-light'));
-}
-
-%prime-light-outline {
-  @include comp-colors-outline(map-get($brand, 'prime-light'));
+  @include comp-colors-outline($primary);
 }
 
 %secondary-solid {
-  @include comp-colors-solid(map-get($brand, 'secondary'));
+  @include comp-colors-solid($secondary);
 }
 
 %secondary-outline {
-  @include comp-colors-outline(map-get($brand, 'secondary'));
+  @include comp-colors-outline($secondary);
 }
 
-%terciary-solid {
-  @include comp-colors-solid(map-get($brand, 'terciary'));
+%tertiary-solid {
+  @include comp-colors-solid($tertiary);
 }
 
-%terciary-outline {
-  @include comp-colors-outline(map-get($brand, 'terciary'));
+%tertiary-outline {
+  @include comp-colors-outline($tertiary);
 }
 
 %accent-solid {
-  @include comp-colors-solid(map-get($brand, 'accent'));
+  @include comp-colors-solid($accent);
 }
 
 %accent-outline {
-  @include comp-colors-outline(map-get($brand, 'accent'));
+  @include comp-colors-outline($accent);
 }
