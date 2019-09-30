@@ -10,23 +10,49 @@
 }
 
 @function set-text-color($color) {
-    // @if lightness($color) < 75 and lightness($color) > 25 {
-    //   @warn '`#{$color}` Bad BG choice for `$color`';
-    // }
-
-    @if lightness($color) > 50 {
-        @return $black;
-
-        // Lighter backgorund, return dark color
-    }
-    @else {
-        @return $white;
-
-        // Darker background, return light color
-    }
+  @if lightness($color) > 50 {
+    @return $black; // Lighter backgorund, return dark color
+  } @else {
+    @return $white; // Darker background, return light color
+  }
 }
 
-$brand: (primary: $brand-primary, prime-light: tint($brand-primary, 50), prime-dark: shade($brand-primary, 50), accent: adjust-hue($brand-primary, 180), secondary: adjust-hue($brand-primary, 135), terciary: adjust-hue($brand-primary, -135));
+$brand: (
+  primary: $brand-primary,
+  accent:       adjust-hue($brand-primary, 180),
+  secondary:    adjust-hue($brand-primary, 120),
+  tertiary:     adjust-hue($brand-primary, -120),
+  quarternary:  #999 // None in this template
+);
+
+@function setColorMap($base) {
+  $colorMap: (base: $base);
+
+  $setMap: ();  
+
+  @for $i from 5 through 1 {
+    $keyVal: $i * 10;
+    $adj: (6 - $i) * 17;
+    $setMap: (#{$keyVal}: tint($base, $adj));
+    $colorMap: map-merge($colorMap, $setMap);
+  }
+
+  @for $i from 1 through 5 {
+    $adj: $i * 13;
+    $keyVal: ($i + 5) * 10;
+    $setMap: (#{$keyVal}: shade($base, $adj));
+    $colorMap: map-merge($colorMap, $setMap);
+  }
+
+  @return $colorMap;
+}
+
+$grayscale:     setColorMap(#999);
+$primary:       setColorMap($brand-primary);
+$accent:        setColorMap(map-get($brand, 'accent'));
+$secondary:     setColorMap(map-get($brand, 'secondary'));
+$tertiary:      setColorMap(map-get($brand, 'tertiary'));
+$quarternary:   setColorMap(#999);
 
 // Set the Type Size names, assign placement on the scale
 $type-map: (
@@ -153,18 +179,6 @@ $nrw-type-rhythm-px: $nrw-font-size * $line-height;
     margin-right: $el-pad * -1;
     padding-left: $el-pad;
     padding-right: $el-pad;
-}
-
-@mixin comp-colors-solid($state--color) {
-    background-color: $state--color;
-    border-color: darken($state--color, 10);
-    color: set-text-color($state--color);
-}
-
-@mixin comp-colors-outline($state--color) {
-    background-color: tint($state--color, 80);
-    border-color: darken($state--color, 10);
-    color: darken($state--color, 15);
 }
 
 //  For development only
