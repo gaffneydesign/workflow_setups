@@ -67,9 +67,9 @@ function style() {
 	return gulp.src(paths.styles.src)
         .pipe(headerComment(`CSS Compiled on: <%= moment().format('YYYY-MM-DD HH:mm:ss Z')%>
             ============================================================================== *`))
-		.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init({loadMaps: !productionBuild}))
 		.pipe(sass({outputStyle: sassStyle}).on('error', sass.logError))
-		.pipe(sourcemaps.write())
+        .pipe(gulpif(!productionBuild, sourcemaps.write('../../maps')))
         .pipe(gulpif(productionBuild, rename({ suffix: '.min' })))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(browserSync.stream());
