@@ -32,13 +32,13 @@ $brand: (
 
   @for $i from 5 through 1 {
     $keyVal: $i * 10;
-    $adj: (6 - $i) * 17;
+    $adj: (6 - $i) * 18;
     $setMap: (#{$keyVal}: tint($base, $adj));
     $colorMap: map-merge($colorMap, $setMap);
   }
 
   @for $i from 1 through 5 {
-    $adj: $i * 13;
+    $adj: $i * 9;
     $keyVal: ($i + 5) * 10;
     $setMap: (#{$keyVal}: shade($base, $adj));
     $colorMap: map-merge($colorMap, $setMap);
