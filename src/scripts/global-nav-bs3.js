@@ -1,5 +1,5 @@
 // alert('Bar');
-console.log('Main has loaded');
+console.log('BS3 Nav has loaded');
 
 var focusedLink = { 
 	"text":"foo", 
