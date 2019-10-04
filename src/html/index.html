@@ -7,14 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
     <title>PROJECT NAME</title>
-    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('./includes/compression.html')}.css">
-    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
 </head>
 
 <body class="grid-underlay">
     <h1>Primary Header</h1>
 
-    @@include('../includes/header.html')
+    @@include('header.html')
 
     <div class="main-content" role="main">
         <p class="lead">The big style book for the Design System</p>
@@ -267,7 +266,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui necessitatibus delectus, nulla quisquam? Sint fugiat voluptatum necessitatibus natus, earum accusamus totam accusantium, non, adipisci voluptas, consequuntur. Sed blanditiis voluptates sapiente praesentium, nihil sit minus, perferendis doloribus ratione officia, totam quis eaque obcaecati amet quaerat nobis officiis veritatis dignissimos rem. Ipsum impedit expedita quas alias neque.</p>
         </div>
     </div>
-    <script src="js/main@@if (compression === true) {@@include('./includes/compression.html')}.js"></script>
+    <script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
 </body>
 
 </html>

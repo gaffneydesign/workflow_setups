@@ -48,7 +48,7 @@ var paths = {
     },
     pages: {
         src: 'src/html/*.html',
-        includes: 'src/includes/*.html',
+        includes: 'src/includes/',
         dest: outputDir
     },
     styles: {
@@ -90,7 +90,7 @@ function pages() {
     return gulp.src(paths.pages.src, { sourcemaps: true })
         .pipe(fileinclude({
             prefix: '@@',
-            basepath: '@file',
+            basepath: paths.pages.includes,
             context: {
                 compression: productionBuild
             }
