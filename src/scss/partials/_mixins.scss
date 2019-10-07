@@ -131,7 +131,6 @@ $quarternary:   setColorMap(#999);
 // Sliders
 @mixin slideopen($maxh) {
     max-height: $maxh;
-    overflow: visible;
     transition: max-height 0.25s ease-in;
 }
 
