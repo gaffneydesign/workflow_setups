@@ -2,54 +2,21 @@
 
 /* Typography Classes */
 /**********************/
-%x-small-type {
-    @include typesetter(x-small-type);
+
+// Set the desktop classes
+@each $sizeName, $scaleStep in $type-map {
+  %#{$sizeName} {
+      @include typesetter(#{$sizeName});
+  }
 }
 
-%small-type {
-    @include typesetter(small-type);
-}
-
-%large-type {
-    @include typesetter(large-type);
-}
-
-%x-large-type {
-    @include typesetter(x-large-type);
-}
-
-%xx-large-type {
-    @include typesetter(xx-large-type);
-}
-
-%primary-head {
-    @include typesetter(primary-head);
-}
-
+// Set the device classes
 @include responsive(xs) {
-    %x-small-type {
-        @include nrwtypesetter(x-small-type);
+  @each $sizeName, $scaleStep in $type-map {
+    %nrw-#{$sizeName} {
+        @include typesetter(#{$sizeName},'nrw');
     }
-
-    %small-type {
-        @include nrwtypesetter(small-type);
-    }
-
-    %large-type {
-        @include nrwtypesetter(large-type);
-    }
-
-    %x-large-type {
-        @include nrwtypesetter(x-large-type);
-    }
-
-    %xx-large-type {
-        @include nrwtypesetter(xx-large-type);
-    }
-
-    %primary-head {
-        @include nrwtypesetter(primary-head);
-    }
+  }
 }
 
 
@@ -73,24 +40,6 @@
     padding: calc(#{beat(1)} - 1px) $el-pad;
 }
 
-@mixin classMaker($colorMap, $mapName) {
-  @each $name, $colorVal in $colorMap {
-    %#{$mapName}-#{$name} {
-      color: $colorVal;
-    }
-    %#{$mapName}-bg-#{$name} {
-      background-color: $colorVal;
-    }
-    %#{$mapName}-brd-#{$name} {
-      border-color: $colorVal;
-    }
-  }
-}
-@include classMaker($primary,'primary');
-@include classMaker($accent,'accent');
-@include classMaker($secondary,'secondary');
-@include classMaker($tertiary,'tertiary');
-
 @mixin comp-colors-solid($state--color) {
   background-color: map-get($state--color, 'base');
   border-color: map-get($state--color, '10');
@@ -102,6 +51,7 @@
   border-color: map-get($state--color, 'base');
   color: set-text-color(map-get($state--color, '10'));
 }
+
 
 %primary-solid {
   @include comp-colors-solid($primary);
