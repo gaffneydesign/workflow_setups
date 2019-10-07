@@ -79,23 +79,42 @@ $shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 // Typography variables
 $line-height: 1.5;
 
+// Desktop sizes
 $base-font-size: 16px;
 $base-line-height: $line-height;
 // Minor Third Scale: 1.2
+/*
+	https://type-scale.com/?size=16&scale=1.200&text=Demo%20Type%20Scale&font=Helvetica%Neue&fontweight=400&bodyfont=Helvetica%Neue&bodyfontweight=400&lineheight=1.45&backgroundcolor=white&fontcolor=%23333&preview=false
+*/ 
 $type-scale: 1.2;
-
+$type-rhythm-px: $base-font-size * $line-height;
 
 $nrw-font-size: 14px;
 $nrw-line-height: $line-height;
 // Major Second Scale: 1.125
+/*
+	https://type-scale.com/?size=16&scale=1.125&text=Demo%20Type%20Scale&font=Helvetica%Neue&fontweight=400&bodyfont=Helvetica%Neue&bodyfontweight=400&lineheight=1.45&backgroundcolor=white&fontcolor=%23333&preview=false
+*/ 
 $nrw-type-scale: 1.125;
-
+$nrw-type-rhythm-px: $nrw-font-size * $line-height;
 
 $print-font-size: 12px;
 $print-line-height: $line-height;
-// Major Second Scale: 1.125
+// Major Second Scale: 1.125 - see above
 $print-type-scale: 1.125;
 
+
+
+// Set the Type Size names, assign placement on the scale
+$type-map: (
+     x-small-type: -2, 
+       small-type: -1, 
+             base:  0, 
+       large-type:  1, 
+     x-large-type:  2, 
+    xx-large-type:  3, 
+     primary-head:  4
+);
 
 // Layout Grid Sizes
 $screen-lg:			1200px;
