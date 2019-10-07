@@ -17,11 +17,14 @@
   }
 }
 
+
+$hueAngle: 120;
+
 $brand: (
-  primary: $brand-primary,
+  primary:      $brand-primary,
   accent:       adjust-hue($brand-primary, 180),
-  secondary:    adjust-hue($brand-primary, 120),
-  tertiary:     adjust-hue($brand-primary, -120),
+  secondary:    adjust-hue($brand-primary, $hueAngle),
+  tertiary:     adjust-hue($brand-primary, -($hueAngle)),
   quarternary:  #999 // None in this template
 );
 
@@ -54,19 +57,12 @@ $secondary:     setColorMap(map-get($brand, 'secondary'));
 $tertiary:      setColorMap(map-get($brand, 'tertiary'));
 $quarternary:   setColorMap(#999);
 
-// Set the Type Size names, assign placement on the scale
-$type-map: (
-     x-small-type: -2, 
-       small-type: -1, 
-             base:  0, 
-       large-type:  1, 
-     x-large-type:  2, 
-    xx-large-type:  3, 
-     primary-head:  4
-);
 
 @function power($exponent, $value, $factor) {
-    @if $exponent > 0 {
+    @if $exponent == null {
+        $value: 1;
+    }
+    @else if $exponent > 0 {
         @for $i from 1 through $exponent {
             $value: $value * $factor;
         }
@@ -80,52 +76,31 @@ $type-map: (
     @return $value;
 }
 
-$type-rhythm-px: $base-font-size * $line-height;
 
-@mixin typesetter($size--name) {
+@mixin typesetter($size--name, $screen: '') {
     $size--power: map-get($type-map, $size--name);
 
-    // @debug '----' $size--name '----';
+    $this-type-scale: $type-scale;
+    $this-font-size: $base-font-size;
+    $this-type-rhythm-px: $type-rhythm-px;
+
+    @if $screen == 'nrw' {
+        $this-type-scale: $nrw-type-scale;
+        $this-font-size: $nrw-font-size;
+        $this-type-rhythm-px: $nrw-type-rhythm-px;
+    }
 
     // Calculate the adjustments
-    $size-adjustor: power($size--power, 1, $type-scale);
-    $height-adjustor: power($size--power * -1, $line-height, $type-scale);
-    $nrw-height-adjustor: power($size--power * -1, $nrw-line-height, $nrw-type-scale);
+    $size-adjustor: power($size--power, 1, $this-type-scale);
+    $height-adjustor: power($size--power * -1, $line-height, $this-type-scale);
 
-    $fz-pixels: $size-adjustor * $base-font-size;
+    $fz-pixels: $size-adjustor * $this-font-size;
 
-    @if $fz-pixels > $type-rhythm-px * 0.85 {
+    @if $fz-pixels > $this-type-rhythm-px * 0.85 {
         $height-adjustor: $height-adjustor * 1.5;
     }
 
-    @if $fz-pixels < $base-font-size {
-        $height-adjustor: $height-adjustor * 0.75;
-    }
-
-    $chrome-hack: 0.001;
-
-    font-size: $size-adjustor * 1em;
-    line-height: $height-adjustor + $chrome-hack;
-}
-
-$nrw-type-rhythm-px: $nrw-font-size * $line-height;
-
-@mixin nrwtypesetter($size--name) {
-    $size--power: map-get($type-map, $size--name);
-
-    // @debug '----' $size--name '----';
-
-    // Calculate the adjustments
-    $size-adjustor: power($size--power, 1, $nrw-type-scale);
-    $height-adjustor: power($size--power * -1, $line-height, $nrw-type-scale);
-
-    $fz-pixels: $size-adjustor * $nrw-font-size;
-
-    @if $fz-pixels > $nrw-type-rhythm-px * 0.85 {
-        $height-adjustor: $height-adjustor * 1.5;
-    }
-
-    @if $fz-pixels < $nrw-font-size {
+    @if $fz-pixels < $this-font-size {
         $height-adjustor: $height-adjustor * 0.75;
     }
 
