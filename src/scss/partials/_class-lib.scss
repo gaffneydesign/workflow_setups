@@ -37,21 +37,9 @@
 %component-compact {
     @extend %component;
 
+    border-radius: $border-radius-small;
     padding: calc(#{beat(1)} - 1px) $el-pad;
 }
-
-@mixin comp-colors-solid($state--color) {
-  background-color: map-get($state--color, 'base');
-  border-color: map-get($state--color, '10');
-  color: set-text-color(map-get($state--color, 'base'));
-}
-
-@mixin comp-colors-outline($state--color) {
-  background-color: map-get($state--color, '10');
-  border-color: map-get($state--color, 'base');
-  color: set-text-color(map-get($state--color, '10'));
-}
-
 
 %primary-solid {
   @include comp-colors-solid($primary);
@@ -59,6 +47,14 @@
 
 %primary-outline {
   @include comp-colors-outline($primary);
+}
+
+%accent-solid {
+  @include comp-colors-solid($accent);
+}
+
+%accent-outline {
+  @include comp-colors-outline($accent);
 }
 
 %secondary-solid {
@@ -77,10 +73,10 @@
   @include comp-colors-outline($tertiary);
 }
 
-%accent-solid {
-  @include comp-colors-solid($accent);
+%quarternary-solid {
+  @include comp-colors-solid($quarternary);
 }
 
-%accent-outline {
-  @include comp-colors-outline($accent);
+%quarternary-outline {
+  @include comp-colors-outline($quarternary);
 }

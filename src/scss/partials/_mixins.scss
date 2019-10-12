@@ -1,6 +1,9 @@
 @import "variables";
 @import "decimal";
 
+// ************
+// Color System
+// ************
 @function tint($color, $percentage) {
     @return mix(white, $color, $percentage);
 }
@@ -18,38 +21,31 @@
 }
 
 
-$hueAngle: 120;
-
-$brand: (
-  primary:      $brand-primary,
-  accent:       adjust-hue($brand-primary, 180),
-  secondary:    adjust-hue($brand-primary, $hueAngle),
-  tertiary:     adjust-hue($brand-primary, -($hueAngle)),
-  quarternary:  #999 // None in this template
-);
 
 @function setColorMap($base) {
-  $colorMap: (base: $base);
 
+  $colorMap: ();
   $setMap: ();  
 
-  @for $i from 5 through 1 {
-    $keyVal: $i * 10;
-    $adj: (6 - $i) * 18;
-    $setMap: (#{$keyVal}: tint($base, $adj));
+  @for $i from 10 through 1 {
+    $keyVal: $i * 9;
+    $keyValName: $i * 10;
+    $setMap: (l-#{$keyValName}: tint($base, $keyVal));
     $colorMap: map-merge($colorMap, $setMap);
   }
 
-  @for $i from 1 through 5 {
-    $adj: $i * 9;
-    $keyVal: ($i + 5) * 10;
-    $setMap: (#{$keyVal}: shade($base, $adj));
+  $baseMap: (base: $base);
+  $colorMap: map-merge($colorMap, $baseMap);
+
+  @for $i from 1 through 10 {
+    $keyVal: $i * 7;
+    $keyValName: $i * 10;
+    $setMap: (d-#{$keyValName}: shade($base, $keyVal));
     $colorMap: map-merge($colorMap, $setMap);
   }
 
   @return $colorMap;
 }
-
 $grayscale:     setColorMap(#999);
 $primary:       setColorMap($brand-primary);
 $accent:        setColorMap(map-get($brand, 'accent'));
@@ -57,7 +53,44 @@ $secondary:     setColorMap(map-get($brand, 'secondary'));
 $tertiary:      setColorMap(map-get($brand, 'tertiary'));
 $quarternary:   setColorMap(#999);
 
+// System States
+$info:          setColorMap(map-get($brand, 'info'));
+$warning:       setColorMap(map-get($brand, 'warning'));
+$danger:        setColorMap(map-get($brand, 'danger'));
+$success:       setColorMap(map-get($brand, 'success'));
 
+
+@mixin  applyColors($component, $colorPattern) {
+
+  @each $colorName, $colorVal in $brand {
+    #{$component}-#{$colorName} {
+      @extend #{'%'}#{$colorName}-#{$colorPattern} !optional;
+    }
+  }
+}
+
+@mixin comp-colors-solid($state--color) {
+  background-color: map-get($state--color, 'base');
+  border-color: map-get($state--color, 'l-90');
+  color: set-text-color(map-get($state--color, 'base'));
+}
+
+@mixin comp-colors-outline($state--color) {
+  background-color: map-get($state--color, 'l-90');
+  border-color: map-get($state--color, 'base');
+  color: set-text-color(map-get($state--color, 'l-90'));
+}
+
+
+//  For development only
+@mixin shaded($color: 156, $opacity: 0.5) {
+    background-color: rgba($color, $color, $color, $opacity);
+}
+
+
+// ***********
+// Typography
+// ***********
 @function power($exponent, $value, $factor) {
     @if $exponent == null {
         $value: 1;
@@ -114,6 +147,13 @@ $quarternary:   setColorMap(#999);
     @return $line-height / 4 * $beats * 1rem;
 }
 
+@mixin underliner($pad: 1, $mar: 0, $col: $comp-border) {
+  border-bottom: 1px solid $col;
+  padding-top: beat($pad);
+  padding-bottom: calc(#{beat($pad)} - 1px);
+  margin-bottom: beat($mar);
+}
+
 // Set FontAwesome
 @mixin set-fa($fa-char: "024", $weight: 700) {
     &:before {
@@ -128,18 +168,9 @@ $quarternary:   setColorMap(#999);
     }
 }
 
-// Sliders
-@mixin slideopen($maxh) {
-    max-height: $maxh;
-    transition: max-height 0.25s ease-in;
-}
-
-@mixin slideclose($maxh) {
-    max-height: $maxh;
-    overflow: hidden;
-    transition: max-height 0.15s ease-out;
-}
-
+// **********
+// Utilities
+// **********
 @mixin clearfix {
     &:after {
         clear: both;
@@ -155,10 +186,6 @@ $quarternary:   setColorMap(#999);
     padding-right: $el-pad;
 }
 
-//  For development only
-@mixin shaded($color: 156, $opacity: 0.5) {
-    background-color: rgba($color, $color, $color, $opacity);
-}
 
 // Responsive breakpoint generation
 @mixin responsive($width) {
@@ -228,4 +255,17 @@ $quarternary:   setColorMap(#999);
             @content;
         }
     }
+}
+
+
+// Sliders
+@mixin slideopen($maxh) {
+    max-height: $maxh;
+    transition: max-height 0.25s ease-in;
+}
+
+@mixin slideclose($maxh) {
+    max-height: $maxh;
+    overflow: hidden;
+    transition: max-height 0.15s ease-out;
 }
