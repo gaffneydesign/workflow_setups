@@ -1,20 +1,20 @@
-const 	gulp = require('gulp'),
-		sass = require('gulp-sass'),
-	    autoprefixer = require('autoprefixer'),
-	    concat       = require('gulp-concat'),
-	    fileinclude  = require('gulp-file-include'),
-	    gulpif       = require('gulp-if'),
-	    postcss      = require('gulp-postcss'),
-	    uglify       = require('gulp-uglify'),
-	    rename       = require('gulp-rename'),
-	    sourcemaps   = require('gulp-sourcemaps'),
-	    log          = require('fancy-log'),
-	    imagemin     = require('gulp-imagemin'),
-	    buffer       = require('vinyl-buffer'),
-	    source       = require('vinyl-source-stream')
+const 	gulp          = require('gulp'),
+		sass          = require('gulp-sass'),
+	    autoprefixer  = require('autoprefixer'),
+	    concat        = require('gulp-concat'),
+	    fileinclude   = require('gulp-file-include'),
+	    gulpif        = require('gulp-if'),
+	    postcss       = require('gulp-postcss'),
+	    uglify        = require('gulp-uglify'),
+	    rename        = require('gulp-rename'),
+	    sourcemaps    = require('gulp-sourcemaps'),
+	    log           = require('fancy-log'),
+	    imagemin      = require('gulp-imagemin'),
+	    buffer        = require('vinyl-buffer'),
+	    source        = require('vinyl-source-stream')
    		headerComment = require('gulp-header-comment'),
-		merge 		 = require('merge-stream'),
-		browserSync  = require('browser-sync').create();
+		merge 		  = require('merge-stream'),
+		browserSync   = require('browser-sync').create();
 
 
 // Source and Additional variables
@@ -103,7 +103,10 @@ function pages() {
 function compression() {
 
     var imagefiles = gulp.src(paths.images.src)
-        .pipe(gulpif(productionBuild, imagemin(imagemin.jpegtran({ progressive: true }))))
+        .pipe(gulpif(productionBuild, imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 5})
         .pipe(gulpif(productionBuild, gulp.dest(paths.images.dest)));
 
     return merge(imagefiles);
@@ -146,5 +149,3 @@ exports.style = style;
 exports.watch = watch;
 
 exports.default = build;
-
-
