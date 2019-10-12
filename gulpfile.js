@@ -69,7 +69,7 @@ function style() {
             ============================================================================== *`))
         .pipe(sourcemaps.init({loadMaps: !productionBuild}))
 		.pipe(sass({outputStyle: sassStyle}).on('error', sass.logError))
-        .pipe(gulpif(!productionBuild, sourcemaps.write('../../maps')))
+        .pipe(gulpif(!productionBuild, sourcemaps.write('/maps')))
         .pipe(gulpif(productionBuild, rename({ suffix: '.min' })))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(browserSync.stream());
@@ -107,6 +107,7 @@ function compression() {
             imagemin.gifsicle({interlaced: true}),
             imagemin.jpegtran({progressive: true}),
             imagemin.optipng({optimizationLevel: 5})
+        ])))
         .pipe(gulpif(productionBuild, gulp.dest(paths.images.dest)));
 
     return merge(imagefiles);
