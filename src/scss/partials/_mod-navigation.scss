@@ -1,0 +1,39 @@
+nav.global {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5000;
+  background-color: #fff;
+  box-shadow: $shadow-base;
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    li {
+      a {
+        display: block;
+
+        @extend %component-compact;
+
+        margin: 0;
+        border-color: transparent;
+        cursor: pointer;
+        border-radius: 0;
+
+        &:hover {
+          background-color: map-get($accent, "10");
+        }
+
+      }
+      &:first-child {
+        font-weight: 700;
+        margin-right: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+.data-set {
+  margin: 0;
+
+  dt, .data-label {
+    @extend %data-label;
+
+    font-weight: bolder;
+    padding-top: beat(1.5);
+  }
+
+  dd, .data-point {
+    @include underliner(1.5);
+
+    margin: 0;
+    padding-top: 0;
+    padding-left: $el-pad;
+  }
+
+  &.lg dd {
+    @extend %large-type;
+  }
+
+  &.horizontal {
+    display: flex;
+    flex-flow: wrap;
+
+
+    @include data-labeler(8rem);
+    @include data-labeler(8rem, "table");
+
+    dt, 
+    dd, 
+    .data-label,
+    .data-point {
+      @include underliner;
+      padding-top: 0;
+    }
+
+    dt, .data-label {
+      padding-top: beat(1.5);
+    }
+
+    dd, .data-point {
+      padding-top: beat(1);
+    }
+
+    &.lg {
+      dt, .data-label {
+        padding-top: beat(1.6);
+      }
+
+      dd, .data-point {
+        padding-top: beat(1);
+      }
+    }
+    &.with-total {
+      & > *:last-of-type {
+        border-top: 1px solid #000;
+        border-bottom: 0;
+        background-color: #F2F2F2;
+        color: $black;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.data-series {
+  .ds-header {
+    @extend %series-header;
+
+    margin: 0;
+  }
+
+  dl {
+    margin-top: 0;
+  }
+}
+
+.card {
+  .data-set {
+    width: 100%;
+    padding: 0;
+  }
+
+  dt, .data-label {
+    color: $gray-safer;
+    padding-left: $table-sides;
+  }
+
+  dd, .data-point {
+    padding-left: $table-sides + $el-pad;
+    padding-right: $table-sides;
+
+    &:last-child {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .horizontal {
+    dd, .data-point {
+      padding-left: $el-pad;
+      padding-right: $el-pad;
+    }
+
+    &:last-of-type {
+      & > *:last-of-type {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
+
+table.data-set {
+  .ds-header {
+    @extend %series-header;
+
+    font-weight: 400;
+    text-align: left;
+  }
+}
+
+table.data-set.horizontal {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+
+  tbody tr td {
+    display: flex;
+
+    *:last-child {
+      flex: 1;
+    }
+  }
+}
+
+.card {
+  table.data-set {
+    .ds-header {
+      padding: beat(1) $el-pad;
+    }
+
+    *:last-child {
+      border-bottom-color: $comp-border;
+    }
+
+    tbody tr:last-child {
+      *:last-child {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}

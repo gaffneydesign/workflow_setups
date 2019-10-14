@@ -1,0 +1,142 @@
+.table {
+    border-collapse: collapse;
+    border-bottom: 1px solid $black;
+    margin-top: beat(2);
+    margin-bottom: beat(6);
+    max-width: 868px;
+    width: 100%;
+
+    caption {
+        @extend %x-large-type;
+
+        padding: beat(0.5) $table-sides;
+        text-align: left;
+    }
+
+    th {
+        padding: beat(1.5) $table-sides;
+        padding-bottom: calc(#{beat(1.5)} - 2px);
+        border-bottom: 2px solid $black;
+        background: $comp-bg-shade;
+        vertical-align: bottom;
+    }
+
+    td {
+        @include underliner;
+        padding-left: $table-sides;
+        padding-right: $table-sides;
+        vertical-align: top;
+    }
+
+    tr:last-child td {
+        border-bottom: 0;
+    }
+
+    tfoot {
+        border-top: 1px solid purple;
+
+        tr:first-child td {
+            border-top: 1px solid $black;
+            padding-top: calc(#{beat(1)} + 1px);
+        }
+    }
+    caption + tbody, tbody:first-child {
+        tr:first-child td {
+            padding-top: calc(#{beat(1)});
+            border-top: 2px solid $black;
+        }
+    }
+}
+
+@include responsive(xs-up){
+    .table-striped {
+        tbody {
+            tr:nth-child(even) {
+                td {
+                    background-color: $comp-bg;
+                }
+            }
+        }
+    }
+}
+
+
+@include responsive(xxs) {
+    .table-2col {
+        thead {
+            display: none;
+        }
+
+        tbody {
+            tr {
+                display: flex;
+                flex-direction: column;
+            }
+
+            td {
+                padding: beat(0.5) $table-sides calc(#{beat(1.5)} - 1px) $el-pad;
+
+                @include typesetter("large-type", "nrw");
+
+                &:first-child {
+                    @include typesetter("base", "nrw");
+
+                    padding: beat(1.5) $table-sides beat(0.5);
+                    background-color: map-get($grayscale, "10");
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+
+@include responsive(xxs) {
+    .table-multicol {
+        width: 100%;
+
+        thead {
+            display: none;
+        }
+
+        tbody {
+            tr {
+                display: flex;
+                flex-direction: column;
+
+                &:last-child td {
+                    border-bottom: 1px solid $comp-border;
+                }
+            }
+
+            td {
+                padding: beat(1) $table-sides calc(#{beat(1)} - 1px);
+
+                @include typesetter("large-type", "nrw");
+
+                display: flex;
+                align-items: baseline;
+
+                &:before {
+                    @include typesetter("small-type", "nrw");
+
+                    content: attr(data-headlabel);
+                    color: $gray-safe;
+                    margin-right: $el-pad;
+                    flex: 0 0 100px;
+                    text-align: right;
+                }
+
+                &:first-child {
+                    @include typesetter("large-type", "nrw");
+
+                    padding: beat(5) $table-sides beat(1);
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

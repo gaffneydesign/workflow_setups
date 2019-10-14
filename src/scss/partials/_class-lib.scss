@@ -30,7 +30,7 @@
 %component {
     padding: calc(#{beat(2)} - 1px) $el-pad;
     margin: beat(2) 0;
-    border: 1px solid #000;
+    border: 1px solid $comp-border;
     border-radius: $border-radius-base;
 }
 
@@ -39,6 +39,19 @@
 
     border-radius: $border-radius-small;
     padding: calc(#{beat(1)} - 1px) $el-pad;
+}
+
+// @each $colorMap in $palette {
+//   @debug $colorMap;
+// }
+
+
+%grayscale-solid {
+  @include comp-colors-solid($grayscale);
+}
+
+%grayscale-outline {
+  @include comp-colors-outline($grayscale);
 }
 
 %primary-solid {
@@ -79,4 +92,49 @@
 
 %quarternary-outline {
   @include comp-colors-outline($quarternary);
+}
+%info-solid {
+  @include comp-colors-solid($info);
+}
+
+%info-outline {
+  @include comp-colors-outline($info);
+}
+
+%warning-solid {
+  @include comp-colors-solid($warning);
+}
+
+%warning-outline {
+  @include comp-colors-outline($warning);
+}
+
+%danger-solid {
+  @include comp-colors-solid($danger);
+}
+
+%danger-outline {
+  @include comp-colors-outline($danger);
+}
+
+%success-solid {
+  @include comp-colors-solid($success);
+}
+
+%success-outline {
+  @include comp-colors-outline($success);
+}
+
+%data-label {
+  @extend %small-type;
+
+  color: $gray-safe;
+}
+
+%series-header {
+  @extend %large-type;
+
+  @include underliner;
+
+  color: $black;
 }

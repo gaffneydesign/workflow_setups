@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
+    <title>Modules | Workflow API</title>
+    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
+
+    <style> </style>
+</head>
+
+<body class="nav-main grid-underla">
+    <h1>Design Workflow</h1>
+
+    @@include('header.html')
+
+    @@include('local-nav.html')
+
+    <div class="main-content" role="main">
+        <h2>dl.data-set&#8202;&#8212;&#8202;Individual</h2>
+        <dl class="data-set">
+            <dt>Lorem ipsum dolor.</dt>
+            <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+            <dt>Assumenda, rerum, architecto?</dt>
+            <dd>Sequi voluptates deleniti, vel enim veritatis.</dd>
+            <dt>Doloribus, dicta eum!</dt>
+            <dd>Autem quam eveniet blanditiis ea nulla?</dd>
+            <dt>Necessitatibus, perspiciatis, earum.</dt>
+            <dd>Impedit sint sit, fugiat quibusdam amet.</dd>
+        </dl>
+        <dl class="data-set horizontal">
+            <dt>Lorem ipsum</dt>
+            <dd>Lorem ipsum dolor</dd>
+            <dt>Lorem ipsum</dt>
+            <dd>Lorem ipsum dolor</dd>
+            <dt>Lorem ipsum</dt>
+            <dd>Lorem ipsum dolor</dd>
+            <dt>Lorem ipsum</dt>
+            <dd>Lorem ipsum dolor</dd>
+        </dl>
+        <h2>.data-series &gt; dl.data-set&#8202;&#8212;&#8202;In a Series</h2>
+        <div class="data-series">
+            <h3 class="ds-header">Data Heading <small>(h*.ds-header)</small></h3>
+            <dl class="data-set">
+                <dt>Lorem ipsum dolor.</dt>
+                <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                <dt>Dolores expedita, eum!</dt>
+                <dd>Tempore illum deserunt harum, cumque sunt.</dd>
+                <dt>Consequuntur, amet ducimus!</dt>
+                <dd>Qui perferendis, odio quo minus voluptas?</dd>
+                <dt>Fugiat amet, quisquam!</dt>
+                <dd>Necessitatibus omnis dignissimos, libero repellat suscipit.</dd>
+            </dl>
+            <h4 class="ds-header">Data Heading <small>(h*.ds-header)</small></h4>
+            <dl class="data-set horizontal">
+                <dt>Lorem ipsum dolor.</dt>
+                <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                <dt>Harum obcaecati, repellat.</dt>
+                <dd>Sint ab, perspiciatis obcaecati modi accusantium.</dd>
+                <dt>Veritatis, beatae, autem.</dt>
+                <dd>Delectus fugiat sequi nobis amet porro?</dd>
+                <dt>Aut in, quisquam.</dt>
+                <dd>Dignissimos voluptates culpa voluptatum est quas!</dd>
+            </dl>
+        </div>
+        <div class="data-series">
+            <h3 class="ds-header">Data Heading <small>(h*.ds-header)</small></h3>
+            <dl class="data-set horizontal">
+                <dt>Lorem ipsum dolor.</dt>
+                <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                <dt>Dolores expedita, eum!</dt>
+                <dd>Tempore illum deserunt harum, cumque sunt.</dd>
+                <dt>Consequuntur, amet ducimus!</dt>
+                <dd>Qui perferendis, odio quo minus voluptas?</dd>
+                <dt>Fugiat amet, quisquam!</dt>
+                <dd>Necessitatibus omnis dignissimos, libero repellat suscipit.</dd>
+            </dl>
+            <h4 class="ds-header">Data Heading <small>(h*.ds-header)</small></h4>
+            <dl class="data-set">
+                <dt>Lorem ipsum dolor.</dt>
+                <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                <dt>Harum obcaecati, repellat.</dt>
+                <dd>Sint ab, perspiciatis obcaecati modi accusantium.</dd>
+                <dt>Veritatis, beatae, autem.</dt>
+                <dd>Delectus fugiat sequi nobis amet porro?</dd>
+                <dt>Aut in, quisquam.</dt>
+                <dd>Dignissimos voluptates culpa voluptatum est quas!</dd>
+            </dl>
+        </div>
+        <h2>table.data-set&#8202;&#8212;&#8202;Emulated in Table</h2>
+        <table class="data-set">
+            <thead>
+                <tr>
+                    <th class="ds-header">Data Heading <small>(th.ds-header)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="data-label">Lorem ipsum.</div>
+                        <div class="data-point">Lorem ipsum dolor sit amet.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Deleniti, quasi.</div>
+                        <div class="data-point">Officiis nulla quibusdam suscipit est?</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Maxime, quidem!</div>
+                        <div class="data-point">Ea ratione quia sunt nam!</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Totam, vitae.</div>
+                        <div class="data-point">Earum dolorum, voluptas optio dicta.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="data-set horizontal">
+            <thead>
+                <tr>
+                    <th class="ds-header">Data Heading <small>(th.ds-header)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="data-label">Lorem ipsum.</div>
+                        <div class="data-point">Lorem ipsum dolor sit amet.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Libero, est.</div>
+                        <div class="data-point">Iste, expedita soluta reprehenderit quis.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Deserunt, quod.</div>
+                        <div class="data-point">Minus magnam cumque quas voluptatem.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="data-label">Laboriosam, cum.</div>
+                        <div class="data-point">Ea consectetur animi recusandae autem.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Cards with Data Sets</h2>
+        <div class="card">
+            <div class="card-head">Individual</div>
+            <dl class="data-set">
+                <dt>Lorem ipsum.</dt>
+                <dd>Lorem ipsum dolor sit amet.</dd>
+                <dt>Pariatur, possimus.</dt>
+                <dd>Minima veritatis eveniet soluta repellat!</dd>
+                <dt>Earum, rerum!</dt>
+                <dd>Itaque nemo illo ea commodi?</dd>
+                <dt>Ipsum, consectetur.</dt>
+                <dd>Recusandae quasi, eos ratione asperiores.</dd>
+            </dl>
+        </div>
+        <div class="card data-series">
+            <div class="card-head">Data Series</div>
+            <h3 class="ds-header">Data Heading</h3>
+            <dl class="data-set horizontal">
+                <dt>Lorem ipsum.</dt>
+                <dd>Lorem ipsum dolor sit amet.</dd>
+                <dt>Excepturi, quod.</dt>
+                <dd>Provident amet qui, perspiciatis nemo!</dd>
+                <dt>Magni, magnam.</dt>
+                <dd>Nemo alias omnis dolorum, laboriosam.</dd>
+                <dt>Placeat, voluptatem.</dt>
+                <dd>Excepturi ex, debitis illo voluptas.</dd>
+            </dl>
+        </div>
+        <div class="card">
+            <h3 class="card-head">Table Emulation</h3>
+            <table class="data-set">
+                <thead>
+                    <tr>
+                        <th class="ds-header">Data Heading <small>(th.ds-header)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="data-label">Lorem ipsum.</div>
+                            <div class="data-point">Lorem ipsum dolor sit amet.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="data-label">Deleniti, quasi.</div>
+                            <div class="data-point">Officiis nulla quibusdam suscipit est?</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="data-label">Maxime, quidem!</div>
+                            <div class="data-point">Ea ratione quia sunt nam!</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="data-label">Totam, vitae.</div>
+                            <div class="data-point">Earum dolorum, voluptas optio dicta.</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @@include('footer.html')
+
+<script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
+</body>
+
+</html>

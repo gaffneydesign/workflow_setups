@@ -1,0 +1,105 @@
+legend {
+  @extend %xx-large-type;
+
+  @include underliner;
+
+  margin-bottom: beat(4);
+  width: 100%;
+}
+
+.ga-main {
+  & > form:first-child {
+    legend {
+      padding-top: 0;
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: beat(4);
+  align-items: baseline;
+  flex-flow: wrap;
+
+  label {
+    @extend %data-label;
+
+    flex: 0 1 10rem;
+    text-align: right;
+    padding-right: $el-pad;
+  }
+
+  .form-control {
+    flex: 1;
+    min-height: beat(6);
+  }
+
+  select.form-control {
+    height: beat(6);
+  }
+
+  select:multiple {
+    height: auto;
+  }
+
+  .inline_error {
+    margin: 0 0 0 10rem;
+    flex: 1 0 100%;
+  }
+
+  &.has-error {
+    & > * {
+      color: map-get($danger, "70");
+      border-color: map-get($danger, "60");
+    }
+
+    label {
+      font-weight: 700;
+    }
+
+    .form-control {
+      background-color: map-get($danger, "10");
+    }
+  }
+}
+
+.form-control {
+  padding: beat(1) $table-sides;
+  border-radius: $border-radius-base;
+  border-color: $comp-border-shade;
+}
+
+label {}
+
+.form-check {
+  display: flex;
+  align-items: baseline;
+  padding: beat(1) $table-sides;
+
+  label.form-check-label {
+    font-size: 1rem;
+    margin-left: 0.65rem;
+  }
+
+  input:disabled + .form-check-label {
+    color: $gray-safe;
+  }
+
+  input:checked + .form-check-label {
+    color: $black;
+    font-weight: 500;
+  }
+}
+
+.holder {
+  display: flex;
+  flex-flow: wrap;
+
+  .btn {
+    margin-right: $grid-gutter-width;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

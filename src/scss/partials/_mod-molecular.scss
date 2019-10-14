@@ -1,0 +1,186 @@
+.component {
+  @extend %component;
+}
+
+.well-inverse {
+  @extend %component;
+
+  @extend %grayscale-solid;
+}
+
+.well {
+  @extend %component;
+
+  @extend %grayscale-outline;
+}
+
+//
+@mixin componentizer($theColor) {
+  .#{$theColor}-solid {
+    @extend %component;
+
+    @extend %#{$theColor}-solid;
+  }
+
+  .#{$theColor}-outline {
+    @extend %component;
+
+    @extend %#{$theColor}-outline;
+  }
+}
+
+@mixin logme($theColor) {
+  @debug $theColor;
+}
+
+@each $color, $value in $brand {
+  @include componentizer($color);
+}
+
+.card {
+  @extend %component;
+
+  box-sizing: border-box;
+  box-shadow: $shadow-base-2;
+  padding: 0;
+
+  & > * {
+    padding: 0 $table-sides;
+
+    &:first-child {
+      padding-top: calc(#{beat(1)} - 1px);
+      border-radius: $border-radius-base $border-radius-base 0 0;
+    }
+
+    &:last-child {
+      padding-bottom: calc(#{beat(1)} - 1px);
+      border-radius: 0 0 $border-radius-base $border-radius-base;
+    }
+  }
+
+  .card-head {
+    margin: 0 0 beat(1);
+    padding-bottom: beat(1);
+    background: $comp-bg-shade;
+  }
+
+  .card-foot {
+    margin: 0;
+    padding-top: beat(1);
+    background: $comp-bg-shade;
+  }
+}
+
+@include applyColors(".card", "outline");
+
+.alert {
+  @extend .card;
+
+  margin-bottom: beat(4);
+
+  .alert-head {
+    @extend %large-type;
+
+    @extend .card-head;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@include applyColors(".alert", "outline");
+
+.btn {
+  @extend %component;
+
+  line-height: $line-height;
+  border-radius: $border-radius-large;
+}
+
+.btn-sm {
+  @extend %component-compact;
+
+  @extend %small-type;
+}
+
+.btn {
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-align: center;
+
+  &-default {
+    @extend %primary-outline;
+  }
+
+  &-disabled {
+    @extend %grayscale-outline;
+  }
+
+  &:hover {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
+@include applyColors(".btn", "solid");
+
+a.btn {
+  color: $white;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    color: $white;
+  }
+
+  &.btn-default {
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.btn-disabled,
+a.btn-disabled {
+  color: $gray-safer;
+
+  &:hover {
+    background-image: none;
+    color: $gray-safer;
+    cursor: not-allowed;
+  }
+}
+
+.btn-link,
+a.btn-link {
+  border-color: transparent;
+  background-color: transparent;
+  color: $link-color;
+  text-decoration: underline;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
+.label {
+  @extend %small-type;
+
+  @extend %component-compact;
+
+  border: 0;
+  border-radius: $border-radius-small;
+  padding: beat(1) $table-sides;
+}
+
+@include applyColors(".label", "solid");
+
+.table {
+  @each $color, $value in $brand {
+    .#{$color} {
+      @extend %#{$color}-outline;
+    }
+  }
+}

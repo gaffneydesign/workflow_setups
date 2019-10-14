@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
+    <title>States | Modules | Workflow API</title>
+    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
+
+    <style>
+        .holder {
+            justify-content: space-around;
+        }
+
+        .holder .btn,
+        .holder .btn:last-child {
+            flex-basis: 20%;
+            margin-left: 15px;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+/*      .holder .btn:nth-child(2),
+        .holder .btn:nth-child(3),
+        .holder .btn:nth-child(4) {
+            flex-basis: 28%;
+        }
+*/
+        .holder h2 {
+            flex: 0 0 100%;
+            padding-bottom: 0;
+            margin-top: 3rem;
+        }
+        .holder .label { 
+            margin: 0.75rem 15px;
+        }
+
+        .holder .label:first-of-type { 
+            margin-left: 0;
+        }
+
+    </style>
+</head>
+
+<body class="nav-main grid-underla">
+    <h1>States</h1>
+
+    @@include('header.html')
+
+    @@include('local-nav.html')
+
+    <div class="main-content" role="main">
+        <h2>System Alert Components</h2>
+        <div class="alert alert-info">
+            <h2 class="alert-head">Alert Header</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod vel placeat inventore! Quia magni ad dolorem dolore facere enim inventore. Quam dolores magnam inventore perspiciatis fugit earum molestiae explicabo laboriosam.</p>
+        </div>
+        <div class="alert alert-warning">
+            <h2 class="alert-head">Alert Header</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis excepturi, tempora, necessitatibus natus nemo, minima a in asperiores dicta, fugiat tenetur. Est illo illum ad itaque ab, fugit aut, aliquid?</p>
+        </div>
+        <div class="alert alert-danger">
+            <h2 class="alert-head">Alert Header</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus deleniti, quibusdam corrupti. Eligendi suscipit nisi expedita architecto enim dolorum tempora illum, tenetur quod sunt, quo explicabo necessitatibus, doloribus mollitia ipsa!</p>
+        </div>
+        <div class="alert alert-success">
+            <h2 class="alert-head">Alert Header</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nesciunt omnis, ipsam sint quidem sequi quo vitae optio repellat, veritatis delectus animi iure dolore dignissimos, natus pariatur doloribus. Eligendi, doloremque.</p>
+        </div>
+        <section class="holder">
+            <h2>Buttons &#8212; <small>input[Type="button"]</small></h2>
+            <input type="button" class="btn btn-primary" value="Primary Button" />
+            <input type="button" class="btn btn-default" value="Default Button" />
+            <input type="button" class="btn btn-link" value="Link Button" />    
+            <input type="button" class="btn btn-disabled" value="Disabled Button" />    
+            <input type="button" class="btn btn-info" value="Info Button" />
+            <input type="button" class="btn btn-warning" value="Warning Button" />
+            <input type="button" class="btn btn-danger" value="Danger Button" />
+            <input type="button" class="btn btn-success" value="Success Button" />
+        </section>
+        <section class="holder">
+            <h2>Buttons  &#8212; <small>button.btn</small></h2>
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-default">Default Button</button>
+            <button class="btn btn-link">Link Button</button>
+            <button class="btn btn-disabled">Disabled Button</button>           
+            <button class="btn btn-info">Info Button</button>
+            <button class="btn btn-warning">Warning Button</button>
+            <button class="btn btn-danger">Danger Button</button>
+            <button class="btn btn-success">Success Button</button>
+        </section>
+        <section class="holder">
+            <h2>Buttons Small &#8212; <small>button.btn-sm</small></h2>
+            <button class="btn btn-sm btn-primary">Primary Button</button>
+            <button class="btn btn-sm btn-default">Default Button</button>
+            <button class="btn btn-sm btn-link">link Button</button>            
+            <button class="btn btn-sm btn-disabled">Disabled Button</button>            
+            <button class="btn btn-sm btn-info">Info Button</button>
+            <button class="btn btn-sm btn-warning">Warning Button</button>
+            <button class="btn btn-sm btn-danger">Danger Button</button>
+            <button class="btn btn-sm btn-success">Success Button</button>
+        </section>
+        <section class="holder">
+            <h2>Buttons  &#8212; <small>a.btn</small></h2>
+            <a href="#" class="btn btn-primary">Primary Button</a>
+            <a href="#" class="btn btn-default">Default Button</a>
+            <a href="#" class="btn btn-link">Link Button</a>            
+            <a href="#" class="btn btn-disabled">Disabled Button</a>            
+            <a href="#" class="btn btn-info">Info Button</a>
+            <a href="#" class="btn btn-warning">Warning Button</a>
+            <a href="#" class="btn btn-danger">Danger Button</a>
+            <a href="#" class="btn btn-success">Success Button</a>
+        </section>
+        <section class="holder">
+            <h2>Labels</h2>
+            <span class="label label-info">Info Label</span>
+            <span class="label label-warning">Warning Label</span>
+            <span class="label label-danger">Danger Label</span>
+            <span class="label label-success">Success Label</span>
+        </section>
+        <table class="table">
+            <caption>Table Cell States </caption>
+                <tbody>
+                    <tr>
+                        <td>No State Applied</td>
+                    </tr>
+                    <tr>
+                        <td class="info">Info Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="warning">Warning Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="danger">Danger Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="success">Success Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="primary">primary Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="secondary">secondary Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="tertiary">tertiary Cell</td>
+                    </tr>
+                    <tr>
+                        <td class="quarternary">quarternary Cell</td>
+                    </tr>
+                </tbody>
+        </table>
+
+    </div>
+
+    @@include('footer.html')
+
+<script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
+</body>
+
+</html>

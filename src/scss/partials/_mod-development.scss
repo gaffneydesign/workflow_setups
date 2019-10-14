@@ -28,7 +28,7 @@
     justify-content: space-around;
     margin: 0 ($el-pad * -1) beat(2);
 
-    h3 {
+    h2 {
       flex: 0 0 100%;
       padding-left: $el-pad;
       padding-bottom: calc(#{beat(1)} - 1px);
@@ -44,11 +44,16 @@
       width: $line-height * 2rem;
       height: $line-height * 2rem;
       border-radius: 50%;
-      border-color: rgba(0, 0, 0, 0.5);
+      border-color: rgba(0, 0, 0, 0.25);
       white-space: nowrap;
       display: flex;
       justify-content: center;
       align-items: center;
+
+        &:before {
+          font-size: 1.2rem;
+          margin-right: 0 !important;
+        }
     }
 
     &.shading {
@@ -59,7 +64,7 @@
       @include colorChips($primary);
 
       .color:nth-child(12) .swatch {
-        border: 3px solid $black;
+        border: 3px solid rgba(0,0,0, 0.25);
       }
     }
 
@@ -81,18 +86,34 @@
 
     &.info {
       @include colorChips($info);
+
+      .color:nth-child(12) .swatch {
+        @include set-fa('05a');
+      }
     }
 
     &.warning {
       @include colorChips($warning);
+
+      .color:nth-child(12) .swatch {
+        @include set-fa('071');
+      }
     }
 
     &.danger {
       @include colorChips($danger);  
+
+      .color:nth-child(12) .swatch {
+        @include set-fa('06a');
+      }
     }
 
     &.success {
       @include colorChips($success);
+
+      .color:nth-child(12) .swatch {
+        @include set-fa('058');
+      }
     }
   }
 }

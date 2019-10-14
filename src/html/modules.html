@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
+    <title>Modules | Workflow API</title>
+    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
+
+    <style>
+
+        section.solid,
+        section.outline {
+            display: flex;
+            flex-flow: wrap;
+            justify-content: space-around;
+        }
+
+        section h3,
+        section hr {
+            flex: 0 0 100%;
+        }
+
+        section.solid > div,
+        section.outline > div {
+            /*flex: 0 0 20%;*/
+        }
+
+    </style>
+</head>
+
+<body class="nav-main grid-underla">
+    <h1>Design Workflow</h1>
+
+    @@include('header.html')
+
+    @@include('local-nav.html')
+
+    <div class="main-content" role="main">
+        <h2>Base-level Component</h2>
+        <div class="component">Component</div>
+        <section class="solid">
+            <h3>Solid Components</h3>
+            <div class="well-inverse">Neutral Solid</div>
+            <div class="primary-solid">Primary Solid</div>
+            <div class="accent-solid">Accent Solid</div>
+            <div class="secondary-solid">Secondary Solid</div>
+            <div class="tertiary-solid">Tertiary Solid</div>
+            <hr>
+            <div class="info-solid">Info Solid</div>
+            <div class="warning-solid">Warning Solid</div>
+            <div class="danger-solid">Danger Solid</div>
+            <div class="success-solid">Success Solid</div>
+        </section>
+        <section class="outline">
+            <h3>Outline Components</h3>
+            <div class="well">Neutral Outline</div>
+            <div class="primary-outline">Primary Outline</div>
+            <div class="accent-outline">Accent Outline</div>
+            <div class="secondary-outline">Secondary Outline</div>
+            <div class="tertiary-outline">Tertiary Outline</div>
+            <hr>
+            <div class="info-outline">Info Outline</div>
+            <div class="warning-outline">Warning Outline</div>
+            <div class="danger-outline">Danger Outline</div>
+            <div class="success-outline">Success Outline</div>
+        </section>
+        <section class="cards">
+            <div class="card card-tertiary">
+                <h2 class="card-head">Card Element</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aut quis deleniti eveniet ipsam nam eligendi nihil nemo consectetur, dolorem illum eum repudiandae, perferendis voluptas.</p>
+                <p>Et quidem modi natus facilis harum obcaecati magnam blanditiis possimus officiis doloremque fugiat voluptatem doloribus aut, eligendi vero labore, ea fuga accusantium, necessitatibus autem voluptate!</p>
+                <p class="card-foot">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, eveniet.</p>
+            </div>
+        </section>
+    </div>
+    @@include('footer.html')
+<script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
+</body>
+
+</html>

@@ -60,18 +60,20 @@ $danger:        setColorMap(map-get($brand, 'danger'));
 $success:       setColorMap(map-get($brand, 'success'));
 
 
+
+
 @mixin  applyColors($component, $colorPattern) {
 
   @each $colorName, $colorVal in $brand {
     #{$component}-#{$colorName} {
-      @extend #{'%'}#{$colorName}-#{$colorPattern} !optional;
+      @extend #{'%'}#{$colorName}-#{$colorPattern};
     }
   }
 }
 
 @mixin comp-colors-solid($state--color) {
   background-color: map-get($state--color, 'base');
-  border-color: map-get($state--color, 'l-90');
+  // border-color: map-get($state--color, 'l-90');
   color: set-text-color(map-get($state--color, 'base'));
 }
 
@@ -86,6 +88,20 @@ $success:       setColorMap(map-get($brand, 'success'));
 @mixin shaded($color: 156, $opacity: 0.5) {
     background-color: rgba($color, $color, $color, $opacity);
 }
+
+// Link Colors
+$link-color:            map-get($accent, 'd-60');
+$link-color-visited:    map-get($accent, 'base');
+$link-color-hover:      map-get($accent, 'd-20');
+$link-color-active:     map-get($primary, 'd-20');
+
+
+//   Component Colors
+$comp-bg:           map-get($grayscale, 'l-90');
+$comp-border:       rgba(0,0,0, .25);
+$comp-bg-shade:     linear-gradient(to bottom,  rgba(0,0,0,0.065) 0%,rgba(0,0,0,0.065) 100%);
+$comp-border-shade: map-get($grayscale, 'l-50');
+
 
 
 // ***********
@@ -268,4 +284,23 @@ $success:       setColorMap(map-get($brand, 'success'));
     max-height: $maxh;
     overflow: hidden;
     transition: max-height 0.15s ease-out;
+}
+
+
+@mixin data-labeler($width, $el-parent: "dl") {
+  $label: "dt";
+  $dpoint: "dd";
+
+  @if $el-parent != "dl" {
+    $label: ".data-label";
+    $dpoint: ".data-point";
+  }
+
+  #{$label} {
+    flex: 0 0 $width;
+  }
+
+  #{$dpoint} {
+    flex: 0 0 calc(100% - #{$width});
+  }
 }

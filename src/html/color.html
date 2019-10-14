@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
-    <title>PROJECT NAME</title>
+    <title>Color System | Workflow API</title>
     <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
 </head>
 
 <body class="grid-underla">
-    <h1>Primary Header</h1>
+    <h1>Color System</h1>
     @@include('header.html')
     <div class="main-content" role="main">
-        <p class="lead">The big style book for the Design System</p>
-        <h2>Color System</h2>
-        <p>Based on the selection of the $brand-primary color, all variations, tints, and shades are generated through SASS functions.</p>
+        <p class="lead">Based on the selection of the $brand-primary color, all variations, tints, and shades are generated through SASS functions.</p>
+
         <div class="color-chart">
             <div class="shading">
-                <h3>Shading</h3>
+                <h2>Shading</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -85,7 +84,7 @@
                 </div>
             </div>
             <div class="primary">
-                <h3>Primary</h3>
+                <h2>Primary</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -151,7 +150,7 @@
                 </div>
             </div>
             <div class="accent">
-                <h3>Accent <small>(Complimentary)</small></h3>
+                <h2>Accent <small>(Complimentary)</small></h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -217,7 +216,7 @@
                 </div>
             </div>
             <div class="secondary">
-                <h3>Secondary</h3>
+                <h2>Secondary</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -283,7 +282,7 @@
                 </div>
             </div>
             <div class="tertiary">
-                <h3>Tertiary</h3>
+                <h2>Tertiary</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -349,7 +348,7 @@
                 </div>
             </div>
             <div class="quarternary">
-                <h3>Quarternary</h3>
+                <h2>Quarternary</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -415,7 +414,7 @@
                 </div>
             </div>
             <div class="info">
-                <h3>State Info</h3>
+                <h2>State Info</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -447,7 +446,7 @@
                     <div class="swatch">l-10</div>
                 </div>
                 <div class="color">
-                    <div class="swatch">Q</div>
+                    <div class="swatch"></div>
                 </div>
                 <div class="color">
                     <div class="swatch">d-10</div>
@@ -481,7 +480,7 @@
                 </div>
             </div>
             <div class="warning">
-                <h3>State Warning</h3>
+                <h2>State Warning</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -513,7 +512,7 @@
                     <div class="swatch">l-10</div>
                 </div>
                 <div class="color">
-                    <div class="swatch">Q</div>
+                    <div class="swatch"></div>
                 </div>
                 <div class="color">
                     <div class="swatch">d-10</div>
@@ -547,7 +546,7 @@
                 </div>
             </div>
             <div class="danger">
-                <h3>State Danger</h3>
+                <h2>State Danger</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -579,7 +578,7 @@
                     <div class="swatch">l-10</div>
                 </div>
                 <div class="color">
-                    <div class="swatch">Q</div>
+                    <div class="swatch"></div>
                 </div>
                 <div class="color">
                     <div class="swatch">d-10</div>
@@ -591,7 +590,7 @@
                     <div class="swatch">d-30</div>
                 </div>
                 <div class="color">
-                    <div class="swatch">d-40</div>
+                    <div class="swatch">d-40d</div>
                 </div>
                 <div class="color">
                     <div class="swatch">d-50</div>
@@ -613,7 +612,7 @@
                 </div>
             </div>
             <div class="success">
-                <h3>State Success</h3>
+                <h2>State Success</h2>
                 <div class="color">
                     <div class="swatch">l-100</div>
                 </div>
@@ -645,7 +644,7 @@
                     <div class="swatch">l-10</div>
                 </div>
                 <div class="color">
-                    <div class="swatch">Q</div>
+                    <div class="swatch"></div>
                 </div>
                 <div class="color">
                     <div class="swatch">d-10</div>
@@ -680,7 +679,8 @@
             </div>
         </div>
     </div>
-    <script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
+    @@include('footer.html')
+<script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
 </body>
 
 </html>

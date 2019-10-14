@@ -1,51 +1,81 @@
+@import "lay-footer";
+
 body {
   display: grid;
-  grid-template-columns: minmax(290px, $screen-lg);
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr minmax(290px, $screen-lg) 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+    " .   pghd   . "
+    " .   main   . "
+    "foot foot foot";
   justify-content: center;
-  padding: beat(12) 0;
+  padding: beat(12) 0 0;
+
+  h1 {
+    grid-area: pghd;
+  }
+
+  .main-content {
+    grid-area: main;
+  }
+
+  footer {
+    grid-area: foot;
+  }
 
   & > * {
     padding-left: $el-pad;
     padding-right: $el-pad;
   }
+
+  &.nav-main {
+    grid-template-columns: 1fr minmax(150px, 300px) minmax(400px, 900px) 1fr;
+    grid-template-areas:
+      " .   pghd pghd   . "
+      " .   lnav main   . "
+      "foot foot foot foot";
+
+    nav {
+      grid-area: lnav;
+    }
+  }
 }
 
 // Dev Properties
 .grid-underlay {
-    background: url("../img/devbg_12c_full.png") center 0 repeat-y;
-    background-size: 100% $type-rhythm-px;
+  background: url("../img/devbg_12c_full.png") center 0 repeat-y;
+  background-size: 100% $type-rhythm-px;
 }
 
 @include responsive(xs) {
-    .grid-underlay {
-        background-size: 100% $nrw-type-rhythm-px;
-    }
+  .grid-underlay {
+    background-size: 100% $nrw-type-rhythm-px;
+  }
 }
 
 
 @include responsive(xxs) {
-    body {
-        padding-top: beat(10);
-    }
+  body {
+    padding-top: beat(10);
+  }
 
-    .grid-underlay {
-        background: url("../img/devbg_type_white.png") center 0 repeat-y;
-        background-size: 100% $nrw-type-rhythm-px;
-    }
+  .grid-underlay {
+    background: url("../img/devbg_type_white.png") center 0 repeat-y;
+    background-size: 100% $nrw-type-rhythm-px;
+  }
 }
 
 
 @include responsive(lg) {
-    .grid-underlay {
-        background-color: $gray-light;
-        background-size: 1200px $type-rhythm-px;
-    }
+  .grid-underlay {
+    background-color: $gray-light;
+    background-size: 1200px $type-rhythm-px;
+  }
 }
 
 
 .container {
-    @extend %container;
+  @extend %container;
 }
 
 .main-content {

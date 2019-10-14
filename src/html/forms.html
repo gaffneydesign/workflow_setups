@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quam sint temporibus asperiores est, tempore?">
+    <title>Forms | Modules | Workflow API</title>
+    <link rel="stylesheet" href="css/styles@@if (compression === true) {@@include('compression.html')}.css">
+
+    <style> </style>
+</head>
+
+<body class="nav-main grid-underla">
+    <h1>Forms</h1>
+
+    @@include('header.html')
+
+    @@include('local-nav.html')
+
+    <div class="main-content" role="main">
+        <form>
+            <fieldset>
+                <legend>Form Elements</legend>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleWrong">Email address</label>
+                    <input type="email" class="form-control" id="exampleWrong" placeholder="name@example.com">
+                    <p class="inline_error">This was a mistake!</p>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <p class="inline_error">Select something else!</p>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                    <label class="form-check-label" for="defaultCheck2">
+                        Disabled checkbox
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Default radio
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Second default radio
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+                    <label class="form-check-label" for="exampleRadios3">
+                        Disabled radio
+                    </label>
+                </div>
+
+                <section class="holder">
+                    <input type="button" class="btn btn-primary" value="Primary Button">
+                    <input type="button" class="btn btn-default" value="Default Button">
+                    <input type="button" class="btn btn-disabled" value="Disabled Button">          
+                    <input type="button" class="btn btn-link" value="Cancel Button">
+                </section>
+                <p><a href="#">Lorem ipsum dolor sit amet.</a></p>
+            </fieldset>
+        </form>
+    </div>
+
+    @@include('footer.html')
+
+<script src="js/main@@if (compression === true) {@@include('compression.html')}.js"></script>
+</body>
+
+</html>

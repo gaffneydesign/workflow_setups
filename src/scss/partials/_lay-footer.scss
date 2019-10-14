@@ -1,0 +1,31 @@
+footer {
+	background-color: map-get($secondary,'l-80');
+	display: flex;
+	justify-content: center;
+	padding: beat(2) $el-pad;
+
+	p {
+		@extend %small-type;
+		flex: 0 1 #{$screen-lg / 2};
+	}
+}
+
+@include responsive(xs-up){
+
+	footer {
+		p:last-child {
+			text-align: right;
+		}
+	}
+
+};
+
+@include responsive(xxs){
+	footer {
+		flex-flow: wrap;
+		p {			
+			flex: 0 0 100%;
+			text-align: center;
+		}
+	}
+};	
