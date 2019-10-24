@@ -70,6 +70,7 @@ function style() {
         .pipe(sourcemaps.init({loadMaps: !productionBuild}))
 		.pipe(sass({outputStyle: sassStyle}).on('error', sass.logError))
         .pipe(gulpif(!productionBuild, sourcemaps.write('/maps')))
+        .pipe(gulpif(productionBuild, postcss([autoprefixer({ grid: true })])))
         .pipe(gulpif(productionBuild, rename({ suffix: '.min' })))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(browserSync.stream());
