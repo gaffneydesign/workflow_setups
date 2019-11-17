@@ -1,50 +1,45 @@
-@import "mixins";
+@import 'mixins';
 
-/* Typography Classes */
-/**********************/
+// * Typography Classes *
+// **********************
 
 // Set the desktop classes
-@each $sizeName, $scaleStep in $type-map {
-  %#{$sizeName} {
-      @include typesetter(#{$sizeName});
+@each $size-name, $scale-step in $type-map {
+  %#{$size-name} {
+    @include typesetter(#{$size-name});
   }
 }
 
 // Set the device classes
 @include responsive(xs) {
-  @each $sizeName, $scaleStep in $type-map {
-    %nrw-#{$sizeName} {
-        @include typesetter(#{$sizeName},'nrw');
+  @each $size-name, $scale-step in $type-map {
+    %nrw-#{$size-name} {
+      @include typesetter(#{$size-name}, 'nrw');
     }
   }
 }
 
 
-/* Element Classes    */
-/**********************/
+// * Element Classes    *
+// **********************
 %container {
-    margin: 0 auto;
-    max-width: $screen-lg;
+  margin: 0 auto;
+  max-width: $screen-lg;
 }
 
 %component {
-    padding: calc(#{beat(2)} - 1px) $el-pad;
-    margin: beat(2) 0;
-    border: 1px solid $comp-border;
-    border-radius: $border-radius-base;
+  border: 1px solid $comp-border;
+  border-radius: $border-radius-base;
+  margin: beat(2) 0;
+  padding: calc(#{beat(2)} - 1px) $el-pad;
 }
 
 %component-compact {
-    @extend %component;
+  @extend %component;
 
-    border-radius: $border-radius-small;
-    padding: calc(#{beat(1)} - 1px) $el-pad;
+  border-radius: $border-radius-small;
+  padding: calc(#{beat(1)} - 1px) $el-pad;
 }
-
-// @each $colorMap in $palette {
-//   @debug $colorMap;
-// }
-
 
 %grayscale-solid {
   @include comp-colors-solid($grayscale);
@@ -93,6 +88,7 @@
 %quarternary-outline {
   @include comp-colors-outline($quarternary);
 }
+
 %info-solid {
   @include comp-colors-solid($info);
 }
