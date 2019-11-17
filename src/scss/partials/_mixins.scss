@@ -61,11 +61,11 @@ $success:       fn-set-color-map(map-get($brand, 'success'));
 
 
 
-@mixin  applyColors($component, $colorPattern) {
+@mixin apply-colors($component, $color-pattern) {
 
-  @each $colorName, $colorVal in $brand {
-    #{$component}-#{$colorName} {
-      @extend #{'%'}#{$colorName}-#{$colorPattern};
+  @each $color-name, $color-val in $brand {
+    #{$component}-#{$color-name} {
+      @extend #{'%'}#{$color-name}-#{$color-pattern};
     }
   }
 }
@@ -84,8 +84,8 @@ $success:       fn-set-color-map(map-get($brand, 'success'));
 
 
 //  For development only
-@mixin shaded($color: 156, $opacity: 0.5) {
-    background-color: rgba($color, $color, $color, $opacity);
+@mixin shaded($color: 156, $opacity: .5) {
+  background-color: rgba($color, $color, $color, $opacity);
 }
 
 // Link Colors
@@ -97,8 +97,8 @@ $link-color-active:     map-get($primary, 'd-20');
 
 //   Component Colors
 $comp-bg:           map-get($grayscale, 'l-90');
-$comp-border:       rgba(0,0,0, .25);
-$comp-bg-shade:     linear-gradient(to bottom,  rgba(0,0,0,0.065) 0%,rgba(0,0,0,0.065) 100%);
+$comp-border:       rgba(0, 0, 0, .25);
+$comp-bg-shade:     linear-gradient(to bottom, rgba(0, 0, 0, .065) 0%, rgba(0, 0, 0, .065) 100%);
 $comp-border-shade: map-get($grayscale, 'l-50');
 
 
@@ -107,59 +107,57 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 // Typography
 // ***********
 @function power($exponent, $value, $factor) {
-    @if $exponent == null {
-        $value: 1;
+  @if $exponent == null {
+      $value: 1;
+  } @else if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $factor;
     }
-    @else if $exponent > 0 {
-        @for $i from 1 through $exponent {
-            $value: $value * $factor;
-        }
+  } @else if $exponent < 0 {
+    @for $i from 1 through -$exponent {
+        $value: $value / $factor;
     }
-    @else if $exponent < 0 {
-        @for $i from 1 through -$exponent {
-            $value: $value / $factor;
-        }
-    }
+  }
 
-    @return $value;
+  @return $value;
 }
 
 
 @mixin typesetter($size--name, $screen: '') {
-    $size--power: map-get($type-map, $size--name);
+  $size--power: map-get($type-map, $size--name);
 
-    $this-type-scale: $type-scale;
-    $this-font-size: $base-font-size;
-    $this-type-rhythm-px: $type-rhythm-px;
+  $this-type-scale: $type-scale;
+  $this-font-size: $base-font-size;
+  $this-type-rhythm-px: $type-rhythm-px;
 
-    @if $screen == 'nrw' {
-        $this-type-scale: $nrw-type-scale;
-        $this-font-size: $nrw-font-size;
-        $this-type-rhythm-px: $nrw-type-rhythm-px;
-    }
+  @if $screen == 'nrw' {
+    $this-type-scale: $nrw-type-scale;
+    $this-font-size: $nrw-font-size;
+    $this-type-rhythm-px: $nrw-type-rhythm-px;
+  }
 
     // Calculate the adjustments
-    $size-adjustor: power($size--power, 1, $this-type-scale);
-    $height-adjustor: power($size--power * -1, $line-height, $this-type-scale);
+  $size-adjustor: power($size--power, 1, $this-type-scale);
+  $height-adjustor: power($size--power * -1, $line-height, $this-type-scale);
 
-    $fz-pixels: $size-adjustor * $this-font-size;
+  $fz-pixels: $size-adjustor * $this-font-size;
 
-    @if $fz-pixels > $this-type-rhythm-px * 0.85 {
-        $height-adjustor: $height-adjustor * 1.5;
-    }
+  @if $fz-pixels > $this-type-rhythm-px * .85 {
+    $height-adjustor: $height-adjustor * 1.5;
+  }
 
-    @if $fz-pixels < $this-font-size {
-        $height-adjustor: $height-adjustor * 0.75;
-    }
+  @if $fz-pixels < $this-font-size {
+    $height-adjustor: $height-adjustor * .75;
+  }
 
-    $chrome-hack: 0.001;
+  $chrome-hack: .001;
 
-    font-size: $size-adjustor * 1em;
-    line-height: $height-adjustor + $chrome-hack;
+  font-size: $size-adjustor * 1em;
+  line-height: $height-adjustor + $chrome-hack;
 }
 
 @function beat($beats: 4) {
-    @return $line-height / 4 * $beats * 1rem;
+  @return $line-height / 4 * $beats * 1rem;
 }
 
 @mixin underliner($pad: 1, $mar: 0, $col: $comp-border) {
@@ -171,27 +169,27 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 
 // Set FontAwesome
 @mixin set-fa($fa-char: '024', $weight: 700) {
-    &:before {
-        font-family: 'Font Awesome 5 Free';
-        content: #{''\\f' + $fa-char + '''};
-        margin-right: 0.35em;
-        font-weight: $weight;
+  &::before {
+    content: #{''\\f' + $fa-char + '''};
+    font-family: 'Font Awesome 5 Free';
+    font-weight: $weight;
+    margin-right: .35em;
 
-        @if $fa-char == '024' {
-            color: red;
-        }
+    @if $fa-char == '024' {
+      color: #f00;
     }
+  }
 }
 
 // **********
 // Utilities
 // **********
 @mixin clearfix {
-    &:after {
-        clear: both;
-        content: '';
-        display: table;
-    }
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
 }
 
 @mixin strap-stretch {
@@ -264,13 +262,13 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 // Sliders
 @mixin slideopen($maxh) {
   max-height: $maxh;
-  transition: max-height 0.25s ease-in;
+  transition: max-height .25s ease-in;
 }
 
 @mixin slideclose($maxh) {
   max-height: $maxh;
   overflow: hidden;
-  transition: max-height 0.15s ease-out;
+  transition: max-height .15s ease-out;
 }
 
 
