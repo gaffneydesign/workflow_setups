@@ -1,15 +1,15 @@
-@import "variables";
-@import "decimal";
+@import 'variables';
+@import 'decimal';
 
 // ************
 // Color System
 // ************
 @function tint($color, $percentage) {
-    @return mix(white, $color, $percentage);
+  @return mix($white, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
-    @return mix(black, $color, $percentage);
+  @return mix($black, $color, $percentage);
 }
 
 @function set-text-color($color) {
@@ -20,42 +20,43 @@
   }
 }
 
-@function setColorMap($base) {
+@function fn-set-color-map($base) {
 
-  $colorMap: ();
-  $setMap: ();  
+  $color-map: ();
+  $set-map: ();
 
   @for $i from 10 through 1 {
-    $keyVal: $i * 9;
-    $keyValName: $i * 10;
-    $setMap: (l-#{$keyValName}: tint($base, $keyVal));
-    $colorMap: map-merge($colorMap, $setMap);
+    $key-val: $i * 9;
+    $key-val-name: $i * 10;
+    $set-map: (l-#{$key-val-name}: tint($base, $key-val));
+    $color-map: map-merge($color-map, $set-map);
   }
 
-  $baseMap: (base: $base);
-  $colorMap: map-merge($colorMap, $baseMap);
+  $base-map: (base: $base);
+  $color-map: map-merge($color-map, $base-map);
 
   @for $i from 1 through 10 {
-    $keyVal: $i * 7;
-    $keyValName: $i * 10;
-    $setMap: (d-#{$keyValName}: shade($base, $keyVal));
-    $colorMap: map-merge($colorMap, $setMap);
+    $key-val: $i * 7;
+    $key-val-name: $i * 10;
+    $set-map: (d-#{$key-val-name}: shade($base, $key-val));
+    $color-map: map-merge($color-map, $set-map);
   }
 
-  @return $colorMap;
+  @return $color-map;
 }
-$grayscale:     setColorMap(#999);
-$primary:       setColorMap($brand-primary);
-$accent:        setColorMap(map-get($brand, 'accent'));
-$secondary:     setColorMap(map-get($brand, 'secondary'));
-$tertiary:      setColorMap(map-get($brand, 'tertiary'));
-$quarternary:   setColorMap(#999);
+
+$grayscale:     fn-set-color-map(#999);
+$primary:       fn-set-color-map($brand-primary);
+$accent:        fn-set-color-map(map-get($brand, 'accent'));
+$secondary:     fn-set-color-map(map-get($brand, 'secondary'));
+$tertiary:      fn-set-color-map(map-get($brand, 'tertiary'));
+$quarternary:   fn-set-color-map(#999);
 
 // System States
-$info:          setColorMap(map-get($brand, 'info'));
-$warning:       setColorMap(map-get($brand, 'warning'));
-$danger:        setColorMap(map-get($brand, 'danger'));
-$success:       setColorMap(map-get($brand, 'success'));
+$info:          fn-set-color-map(map-get($brand, 'info'));
+$warning:       fn-set-color-map(map-get($brand, 'warning'));
+$danger:        fn-set-color-map(map-get($brand, 'danger'));
+$success:       fn-set-color-map(map-get($brand, 'success'));
 
 
 
@@ -169,14 +170,14 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 }
 
 // Set FontAwesome
-@mixin set-fa($fa-char: "024", $weight: 700) {
+@mixin set-fa($fa-char: '024', $weight: 700) {
     &:before {
         font-family: 'Font Awesome 5 Free';
-        content: #{'"\\f' + $fa-char + '"'};
+        content: #{''\\f' + $fa-char + '''};
         margin-right: 0.35em;
         font-weight: $weight;
 
-        @if $fa-char == "024" {
+        @if $fa-char == '024' {
             color: red;
         }
     }
@@ -194,104 +195,92 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 }
 
 @mixin strap-stretch {
-    margin-left: $el-pad * -1;
-    margin-right: $el-pad * -1;
-    padding-left: $el-pad;
-    padding-right: $el-pad;
+  margin-left: $el-pad * -1;
+  margin-right: $el-pad * -1;
+  padding-left: $el-pad;
+  padding-right: $el-pad;
 }
 
 
 // Responsive breakpoint generation
 @mixin responsive($width) {
     // Only 1200px and larger
-    @if $width == lg {
-        @media only screen and (min-width: $screen-lg) {
-            @content;
-        }
-    }
-    @else if $width == md {
-        @media only screen and (max-width: $screen-md-max) {
-            @content;
-        }
-    }
-    @else if $width == md-up {
-        @media only screen and (min-width: $screen-md) {
-            @content;
-        }
-    }
-    @else if $width == md-only {
-        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
-            @content;
-        }
-    }
-    @else if $width == sm {
-        @media only screen and (max-width: $screen-sm-max) {
-            @content;
-        }
-    }
-    @else if $width == sm-up {
-        @media only screen and (min-width: $screen-sm) {
-            @content;
-        }
-    }
-    @else if $width == sm-only {
-        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
-            @content;
-        }
-    }
-    @else if $width == xs {
-        @media only screen and (max-width: $screen-xs-max) {
-            @content;
-        }
-    }
-    @else if $width == xs-up {
-        @media only screen and (min-width: $screen-xs) {
-            @content;
-        }
-    }
-    @else if $width == xs-only {
-        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-            @content;
-        }
-    }
-    @else if $width == xxs {
-        @media only screen and (max-width: $screen-xs - 1) {
-            @content;
-        }
-    }
-    @else if $width == sm-md {
-        @media only screen and (min-width: $screen-sm) and (max-width: $screen-md-max) {
-            @content;
-        }
-    }
-    @else if $width == phablet {
-        @media only screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
-            @content;
-        }
-    }
+  @if $width == lg {
+      @media only screen and (min-width: $screen-lg) {
+          @content;
+      }
+  } @else if $width == md {
+      @media only screen and (max-width: $screen-md-max) {
+          @content;
+      }
+  } @else if $width == md-up {
+      @media only screen and (min-width: $screen-md) {
+          @content;
+      }
+  } @else if $width == md-only {
+      @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
+          @content;
+      }
+  } @else if $width == sm {
+      @media only screen and (max-width: $screen-sm-max) {
+          @content;
+      }
+  } @else if $width == sm-up {
+      @media only screen and (min-width: $screen-sm) {
+          @content;
+      }
+  } @else if $width == sm-only {
+      @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+          @content;
+      }
+  } @else if $width == xs {
+      @media only screen and (max-width: $screen-xs-max) {
+          @content;
+      }
+  } @else if $width == xs-up {
+      @media only screen and (min-width: $screen-xs) {
+          @content;
+      }
+  } @else if $width == xs-only {
+      @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+          @content;
+      }
+  } @else if $width == xxs {
+      @media only screen and (max-width: $screen-xs - 1) {
+          @content;
+      }
+  } @else if $width == sm-md {
+      @media only screen and (min-width: $screen-sm) and (max-width: $screen-md-max) {
+          @content;
+      }
+  } @else if $width == phablet {
+      @media only screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
+          @content;
+      }
+  }
 }
 
 
 // Sliders
 @mixin slideopen($maxh) {
-    max-height: $maxh;
-    transition: max-height 0.25s ease-in;
+  max-height: $maxh;
+  transition: max-height 0.25s ease-in;
 }
 
 @mixin slideclose($maxh) {
-    max-height: $maxh;
-    overflow: hidden;
-    transition: max-height 0.15s ease-out;
+  max-height: $maxh;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
 }
 
 
-@mixin data-labeler($width, $el-parent: "dl") {
-  $label: "dt";
-  $dpoint: "dd";
+@mixin data-labeler($width, $el-parent: 'dl') {
+  $label: 'dt';
+  $dpoint: 'dd';
 
-  @if $el-parent != "dl" {
-    $label: ".data-label";
-    $dpoint: ".data-point";
+  @if $el-parent != 'dl' {
+    $label: '.data-label';
+    $dpoint: '.data-point';
   }
 
   #{$label} {
