@@ -1,6 +1,6 @@
 header {
-  display: flex;
   align-items: flex-end;
+  display: flex;
   flex-flow: wrap;
 
   .menu {
@@ -8,7 +8,7 @@ header {
     margin-bottom: 0;
 
     a {
-      color: #ddd;
+      color: $gray-safe;
       padding: beat(1) $el-pad 0;
     }
 
@@ -19,12 +19,12 @@ header {
     .selected a {
       color: #f9f9f9;
       font-weight: bolder;
-      border-bottom-color: rgba(255, 255, 255, 0.6);
+      border-bottom-color: rgba(255, 255, 255, .6);
     }
 
     .parent {
       & > a {
-        @include set-fa("0da");
+        @include set-fa('0da');
       }
 
       ul {
@@ -56,7 +56,7 @@ $lg-brand-width: 125px + $grid-gutter-width;
 
     .brand {
       flex: 0 0 125px;
-      margin: 0 $el-pad beat(-5.5) $el-pad;
+      margin: 0 $el-pad beat(-5.5);
     }
 
     .skippy {
@@ -115,25 +115,25 @@ $lg-brand-width: 125px + $grid-gutter-width;
     }
 
     .navbar-toggle {
-      @include set-fa("0c9");
+      @include set-fa('0c9');
 
       background-color: rgba(255, 255, 255, 0.75);
       border-radius: $border-radius-base;
       margin: 10px $table-sides 0 0;
       padding: beat(1) $table-sides;
 
-      &:before {
+      &::before {
         margin-right: 0;
       }
     }
 
     .menu {
-      flex-direction: column;
       background-color: black;
+      flex-direction: column;
 
       a {
-        display: flex;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
         padding-left: 1.5rem;
       }
 
@@ -143,7 +143,7 @@ $lg-brand-width: 125px + $grid-gutter-width;
 
       & > li:last-child {
         a {
-          border-bottom-color: #000;
+          border-bottom-color: $black;
         }
       }
     }
@@ -152,11 +152,11 @@ $lg-brand-width: 125px + $grid-gutter-width;
 
 
 footer {
-  color: white;
-  padding: beat(2) 0;
+  color: $white;
   display: flex;
   flex-flow: wrap;
   justify-content: space-around;
+  padding: beat(2) 0;
 
   p {
     margin: 0 $el-pad beat(2);

@@ -1,13 +1,13 @@
-@import "lay-footer";
+@import 'lay-footer';
 
 body {
   display: grid;
-  grid-template-columns: 1fr minmax(290px, $screen-lg) 1fr;
-  grid-template-rows: auto 1fr auto;
   grid-template-areas: 
     " .   pghd   . "
     " .   main   . "
     "foot foot foot";
+  grid-template-columns: 1fr minmax(290px, $screen-lg) 1fr;
+  grid-template-rows: auto 1fr auto;
   justify-content: center;
   padding: beat(12) 0 0;
 
@@ -29,11 +29,11 @@ body {
   }
 
   &.nav-main {
-    grid-template-columns: 1fr minmax(150px, 300px) minmax(400px, 900px) 1fr;
-    grid-template-areas:
+    grid-template-areas: 
       " .   pghd pghd   . "
       " .   lnav main   . "
       "foot foot foot foot";
+    grid-template-columns: 1fr minmax(150px, 300px) minmax(400px, 900px) 1fr;
 
     nav {
       grid-area: lnav;
@@ -43,7 +43,7 @@ body {
 
 // Dev Properties
 .grid-underlay {
-  background: url("../img/devbg_12c_full.png") center 0 repeat-y;
+  background: url('../img/devbg_12c_full.png') center 0 repeat-y;
   background-size: 100% $type-rhythm-px;
 }
 
@@ -60,7 +60,7 @@ body {
   }
 
   .grid-underlay {
-    background: url("../img/devbg_type_white.png") center 0 repeat-y;
+    background: url('../img/devbg_type_white.png') center 0 repeat-y;
     background-size: 100% $nrw-type-rhythm-px;
   }
 }

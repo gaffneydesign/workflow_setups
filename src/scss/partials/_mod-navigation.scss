@@ -1,18 +1,18 @@
 nav.global {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 5000;
-  background-color: #fff;
+  background-color: $white;
   box-shadow: $shadow-base;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 5000;
 
   ul {
     display: flex;
     justify-content: flex-end;
     list-style-type: none;
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
 
     li {
       a {

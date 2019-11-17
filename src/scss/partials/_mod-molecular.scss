@@ -15,22 +15,22 @@
 }
 
 //
-@mixin componentizer($theColor) {
-  .#{$theColor}-solid {
+@mixin componentizer($the-color) {
+  .#{$the-color}-solid {
     @extend %component;
 
-    @extend %#{$theColor}-solid;
+    @extend %#{$the-color}-solid;
   }
 
-  .#{$theColor}-outline {
+  .#{$the-color}-outline {
     @extend %component;
 
-    @extend %#{$theColor}-outline;
+    @extend %#{$the-color}-outline;
   }
 }
 
-@mixin logme($theColor) {
-  @debug $theColor;
+@mixin logme($the-color) {
+  @debug $the-color;
 }
 
 @each $color, $value in $brand {
@@ -40,38 +40,38 @@
 .card {
   @extend %component;
 
-  box-sizing: border-box;
   box-shadow: $shadow-base-2;
+  box-sizing: border-box;
   padding: 0;
 
   & > * {
     padding: 0 $table-sides;
 
     &:first-child {
-      padding-top: calc(#{beat(1)} - 1px);
       border-radius: $border-radius-base $border-radius-base 0 0;
+      padding-top: calc(#{beat(1)} - 1px);
     }
 
     &:last-child {
-      padding-bottom: calc(#{beat(1)} - 1px);
       border-radius: 0 0 $border-radius-base $border-radius-base;
+      padding-bottom: calc(#{beat(1)} - 1px);
     }
   }
 
   .card-head {
+    background: $comp-bg-shade;
     margin: 0 0 beat(1);
     padding-bottom: beat(1);
-    background: $comp-bg-shade;
   }
 
   .card-foot {
+    background: $comp-bg-shade;
     margin: 0;
     padding-top: beat(1);
-    background: $comp-bg-shade;
   }
 }
 
-@include applyColors(".card", "outline");
+@include apply-colors('.card', 'outline');
 
 .alert {
   @extend .card;
@@ -89,13 +89,13 @@
   }
 }
 
-@include applyColors(".alert", "outline");
+@include apply-colors('.alert', 'outline');
 
 .btn {
   @extend %component;
 
-  line-height: $line-height;
   border-radius: $border-radius-large;
+  line-height: $line-height;
 }
 
 .btn-sm {
@@ -106,7 +106,7 @@
 
 .btn {
   cursor: pointer;
-  letter-spacing: 0.05em;
+  letter-spacing: .05em;
   text-align: center;
 
   &-default {
@@ -118,11 +118,11 @@
   }
 
   &:hover {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, .35) 0%, rgba(255, 255, 255, 0) 100%);
   }
 }
 
-@include applyColors(".btn", "solid");
+@include apply-colors('.btn', 'solid');
 
 a.btn {
   color: $white;
@@ -155,8 +155,8 @@ a.btn-disabled {
 
 .btn-link,
 a.btn-link {
-  border-color: transparent;
   background-color: transparent;
+  border-color: transparent;
   color: $link-color;
   text-decoration: underline;
 
@@ -175,7 +175,7 @@ a.btn-link {
   padding: beat(1) $table-sides;
 }
 
-@include applyColors(".label", "solid");
+@include apply-colors('.label', 'solid');
 
 .table {
   @each $color, $value in $brand {
