@@ -4,7 +4,7 @@
 // Base for the Color Palette
 $brand-primary: 	#681400;
 // Determines the color scheme
-$hueAngle: 120;
+$hue-angle: 120;
 
 // CSS Variables - Coming Soon!
 // :root {
@@ -28,16 +28,16 @@ $gray-safe:			#767676;
 $gray-safer:    darken($gray-safe, 8);
 
 // Transparency Tints & Shadings
- $tint10: rgba(255,255,255, 0.1);
- $tint17: rgba(255,255,255, 0.175);
- $tint25: rgba(255,255,255, 0.25);
- $tint50: rgba(255,255,255, 0.5);
- $tint87: rgba(255,255,255, 0.875);
-$shade10: rgba(0,0,0, 0.1);
-$shade17: rgba(0,0,0, 0.175);
-$shade25: rgba(0,0,0, 0.25);
-$shade50: rgba(0,0,0, 0.5);
-$shade87: rgba(0,0,0, 0.875);
+$tint10: rgba(255, 255, 255, .1);
+$tint17: rgba(255, 255, 255, .175);
+$tint25: rgba(255, 255, 255, .25);
+$tint50: rgba(255, 255, 255, .5);
+$tint87: rgba(255, 255, 255, .875);
+$shade10: rgba(0, 0, 0, .1);
+$shade17: rgba(0, 0, 0, .175);
+$shade25: rgba(0, 0, 0, .25);
+$shade50: rgba(0, 0, 0, .5);
+$shade87: rgba(0, 0, 0, .875);
 
 // State Colors - borrowed from Bootstrap 4
 $success-base: #28a745;
@@ -49,12 +49,12 @@ $warning-base: #ffc107;
 $brand: (
     primary: $brand-primary,
      accent: adjust-hue($brand-primary, 180),
-  secondary: adjust-hue($brand-primary, $hueAngle),
-   tertiary: adjust-hue($brand-primary, -($hueAngle)),
+  secondary: adjust-hue($brand-primary, $hue-angle),
+   tertiary: adjust-hue($brand-primary, -($hue-angle)),
 quarternary: #999, // None in this template
-       info: $info-base, 
-    warning: $warning-base, 
-     danger: $danger-base, 
+       info: $info-base,
+    warning: $warning-base,
+     danger: $danger-base,
     success: $success-base
 );
 
@@ -112,12 +112,12 @@ $print-type-scale: 1.125;
 
 // Set the Type Size names, assign placement on the scale
 $type-map: (
- x-small-type: -2, 
-   small-type: -1, 
-         base:  0, 
-   large-type:  1, 
- x-large-type:  2, 
-xx-large-type:  3, 
+ x-small-type: -2,
+   small-type: -1,
+         base:  0,
+   large-type:  1,
+ x-large-type:  2,
+xx-large-type:  3,
  primary-head:  4
 );
 
@@ -125,11 +125,11 @@ xx-large-type:  3,
 // Border Radii
 $border-radius-base:        4px;
 $border-radius-large:       $border-radius-base * 1.5;
-$border-radius-small:       $border-radius-base * 0.75;
+$border-radius-small:       $border-radius-base * .75;
 
 // Box Shadow effect
-$shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-base-2: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-base: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+$shadow-base-2: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 
 
 // Screen Breakpoint Sizes
