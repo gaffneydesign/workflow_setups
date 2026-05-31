@@ -1,19 +1,23 @@
-@import 'variables';
-@import 'decimal';
+@use 'variables' as *;
+@use 'decimal';
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
 
 // ************
 // Color System
 // ************
 @function tint($color, $percentage) {
-  @return mix($white, $color, $percentage);
+  @return color.mix($white, $color, $percentage * 1%);
 }
 
 @function shade($color, $percentage) {
-  @return mix($black, $color, $percentage);
+  @return color.mix($black, $color, $percentage * 1%);
 }
 
 @function set-text-color($color) {
-  @if lightness($color) > 50 {
+  @if color.channel($color, "lightness", $space: hsl) > 50 {
     @return $black; // Lighter backgorund, return dark color
   } @else {
     @return $white; // Darker background, return light color
@@ -29,17 +33,17 @@
     $key-val: $i * 9;
     $key-val-name: $i * 10;
     $set-map: (l-#{$key-val-name}: tint($base, $key-val));
-    $color-map: map-merge($color-map, $set-map);
+    $color-map: map.merge($color-map, $set-map);
   }
 
   $base-map: (base: $base);
-  $color-map: map-merge($color-map, $base-map);
+  $color-map: map.merge($color-map, $base-map);
 
   @for $i from 1 through 10 {
     $key-val: $i * 7;
     $key-val-name: $i * 10;
     $set-map: (d-#{$key-val-name}: shade($base, $key-val));
-    $color-map: map-merge($color-map, $set-map);
+    $color-map: map.merge($color-map, $set-map);
   }
 
   @return $color-map;
@@ -47,16 +51,16 @@
 
 $grayscale:     fn-set-color-map(#999);
 $primary:       fn-set-color-map($brand-primary);
-$accent:        fn-set-color-map(map-get($brand, 'accent'));
-$secondary:     fn-set-color-map(map-get($brand, 'secondary'));
-$tertiary:      fn-set-color-map(map-get($brand, 'tertiary'));
+$accent:        fn-set-color-map(map.get($brand, 'accent'));
+$secondary:     fn-set-color-map(map.get($brand, 'secondary'));
+$tertiary:      fn-set-color-map(map.get($brand, 'tertiary'));
 $quarternary:   fn-set-color-map(#999);
 
 // System States
-$info:          fn-set-color-map(map-get($brand, 'info'));
-$warning:       fn-set-color-map(map-get($brand, 'warning'));
-$danger:        fn-set-color-map(map-get($brand, 'danger'));
-$success:       fn-set-color-map(map-get($brand, 'success'));
+$info:          fn-set-color-map(map.get($brand, 'info'));
+$warning:       fn-set-color-map(map.get($brand, 'warning'));
+$danger:        fn-set-color-map(map.get($brand, 'danger'));
+$success:       fn-set-color-map(map.get($brand, 'success'));
 
 
 
@@ -71,15 +75,15 @@ $success:       fn-set-color-map(map-get($brand, 'success'));
 }
 
 @mixin comp-colors-solid($state--color) {
-  background-color: map-get($state--color, 'base');
-  // border-color: map-get($state--color, 'l-90');
-  color: set-text-color(map-get($state--color, 'base'));
+  background-color: map.get($state--color, 'base');
+  // border-color: map.get($state--color, 'l-90');
+  color: set-text-color(map.get($state--color, 'base'));
 }
 
 @mixin comp-colors-outline($state--color) {
-  background-color: map-get($state--color, 'l-90');
-  border-color: map-get($state--color, 'base');
-  color: set-text-color(map-get($state--color, 'l-90'));
+  background-color: map.get($state--color, 'l-90');
+  border-color: map.get($state--color, 'base');
+  color: set-text-color(map.get($state--color, 'l-90'));
 }
 
 
@@ -89,17 +93,17 @@ $success:       fn-set-color-map(map-get($brand, 'success'));
 }
 
 // Link Colors
-$link-color:            map-get($accent, 'd-60');
-$link-color-visited:    map-get($accent, 'base');
-$link-color-hover:      map-get($accent, 'd-20');
-$link-color-active:     map-get($primary, 'd-20');
+$link-color:            map.get($accent, 'd-60');
+$link-color-visited:    map.get($accent, 'base');
+$link-color-hover:      map.get($accent, 'd-20');
+$link-color-active:     map.get($primary, 'd-20');
 
 
 //   Component Colors
-$comp-bg:           map-get($grayscale, 'l-90');
+$comp-bg:           map.get($grayscale, 'l-90');
 $comp-border:       rgba(0, 0, 0, .25);
 $comp-bg-shade:     linear-gradient(to bottom, rgba(0, 0, 0, .065) 0%, rgba(0, 0, 0, .065) 100%);
-$comp-border-shade: map-get($grayscale, 'l-50');
+$comp-border-shade: map.get($grayscale, 'l-50');
 
 
 
@@ -115,7 +119,7 @@ $comp-border-shade: map-get($grayscale, 'l-50');
     }
   } @else if $exponent < 0 {
     @for $i from 1 through -$exponent {
-        $value: $value / $factor;
+        $value: math.div($value, $factor);
     }
   }
 
@@ -124,7 +128,7 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 
 
 @mixin typesetter($size--name, $screen: '') {
-  $size--power: map-get($type-map, $size--name);
+  $size--power: map.get($type-map, $size--name);
 
   $this-type-scale: $type-scale;
   $this-font-size: $base-font-size;
@@ -157,7 +161,7 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 }
 
 @function beat($beats: 4) {
-  @return $line-height / 4 * $beats * 1rem;
+  @return math.div($line-height, 4) * $beats * 1rem;
 }
 
 @mixin underliner($pad: 1, $mar: 0, $col: $comp-border) {
@@ -170,7 +174,7 @@ $comp-border-shade: map-get($grayscale, 'l-50');
 // Set FontAwesome
 @mixin set-fa($fa-char: '024', $weight: 700) {
   &::before {
-    content: #{''\\f' + $fa-char + '''};
+    content: string.unquote('"\\f' + $fa-char + '"');
     font-family: 'Font Awesome 5 Free';
     font-weight: $weight;
     margin-right: .35em;

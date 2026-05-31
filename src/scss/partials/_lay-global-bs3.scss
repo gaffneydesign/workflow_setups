@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
 header {
   align-items: flex-end;
   display: flex;

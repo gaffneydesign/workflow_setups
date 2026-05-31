@@ -1,4 +1,8 @@
-@import 'lay-footer';
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'class-lib';
+
+@use 'lay-footer';
 
 body {
   display: grid;

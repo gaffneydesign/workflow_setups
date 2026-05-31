@@ -1,5 +1,7 @@
 /*		  Global Variables Set: variables.scss		*/
 /*      ========================================   */
+@use "sass:color";
+@use "sass:math";
 
 // Base for the Color Palette
 $brand-primary: 	#681400;
@@ -16,16 +18,16 @@ $black: #000;
 
 //## Grayscale from Bootstrap.
 $gray-base: 		#000;
-$gray-darker: 		lighten($gray-base, 13.5%); // #222
-$gray-dark: 		lighten($gray-base, 20%);   // #333
-$gray: 				lighten($gray-base, 33.5%); // #555
-$gray-light: 		lighten($gray-base, 46.7%); // #777
-$gray-lighter: 		lighten($gray-base, 93.5%); // #eee
+$gray-darker: 		color.scale($gray-base, $lightness: 13.5%); // #222
+$gray-dark: 		color.scale($gray-base, $lightness: 20%);   // #333
+$gray: 				color.scale($gray-base, $lightness: 33.5%); // #555
+$gray-light: 		color.scale($gray-base, $lightness: 46.7%); // #777
+$gray-lighter: 		color.scale($gray-base, $lightness: 93.5%); // #eee
 
 // Lightest gray text-color on full white BG
 // For accessibility audit
 $gray-safe:			#767676;
-$gray-safer:    darken($gray-safe, 8);
+$gray-safer:    color.adjust($gray-safe, $lightness: -8%);
 
 // Transparency Tints & Shadings
 $tint10: rgba(255, 255, 255, .1);
@@ -48,9 +50,9 @@ $warning-base: #ffc107;
 // Define the color base
 $brand: (
     primary: $brand-primary,
-     accent: adjust-hue($brand-primary, 180),
-  secondary: adjust-hue($brand-primary, $hue-angle),
-   tertiary: adjust-hue($brand-primary, -($hue-angle)),
+     accent: color.adjust($brand-primary, $hue: 180deg),
+  secondary: color.adjust($brand-primary, $hue: $hue-angle),
+   tertiary: color.adjust($brand-primary, $hue: -($hue-angle)),
 quarternary: #999, // None in this template
        info: $info-base,
     warning: $warning-base,
@@ -76,9 +78,9 @@ $print-bg-light: 	  $print-base-light !important;
 $print-bg-med:      $print-base-med !important;
 $print-bg-dark:     $print-base-dark !important;
 
-$print-brd-light: 	darken($print-base-light, 10) !important;
-$print-brd-med: 	  darken($print-base-med, 10) !important;
-$print-brd-dark: 	  darken($print-base-dark, 10) !important;
+$print-brd-light: 	color.adjust($print-base-light, $lightness: -10%) !important;
+$print-brd-med: 	  color.adjust($print-base-med, $lightness: -10%) !important;
+$print-brd-dark: 	  color.adjust($print-base-dark, $lightness: -10%) !important;
 
 
 
@@ -146,5 +148,5 @@ $screen-xxs-max:	$screen-xs - 1;
 
 // Layout Grid Details
 $grid-gutter-width: 30px;
-$el-pad: $grid-gutter-width / 2;
+$el-pad: math.div($grid-gutter-width, 2);
 $table-sides: 8px;

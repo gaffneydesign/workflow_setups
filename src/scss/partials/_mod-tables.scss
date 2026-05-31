@@ -1,3 +1,8 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'class-lib';
+@use "sass:map";
+
 .table {
     border-collapse: collapse;
     border-bottom: 1px solid $black;
@@ -82,7 +87,7 @@
                     @include typesetter("base", "nrw");
 
                     padding: beat(1.5) $table-sides beat(0.5);
-                    background-color: map-get($grayscale, "10");
+                    background-color: map.get($grayscale, "l-90");
                     border-bottom: 0;
                 }
             }

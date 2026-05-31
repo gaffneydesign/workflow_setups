@@ -1,3 +1,8 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'class-lib';
+@use "sass:list";
+
 .test-comp-x {
   @extend %component;
 
@@ -12,7 +17,7 @@
 
 @mixin colorChips($cMap) {
     @each $color, $value in $cMap {
-      $i: index($cMap, $color $value) + 1;
+      $i: list.index($cMap, $color $value) + 1;
 
       .color:nth-child(#{$i}) .swatch {
         background-color: $value;

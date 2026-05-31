@@ -1,12 +1,18 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use "sass:math";
+@use "sass:map";
+@use 'class-lib';
+
 footer {
-	background-color: map-get($secondary,'l-80');
+	background-color: map.get($secondary,'l-80');
 	display: flex;
 	justify-content: center;
 	padding: beat(2) $el-pad;
 
 	p {
 		@extend %small-type;
-		flex: 0 1 #{$screen-lg / 2};
+		flex: 0 1 #{math.div($screen-lg, 2)};
 	}
 }
 

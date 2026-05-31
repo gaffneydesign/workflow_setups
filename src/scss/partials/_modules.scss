@@ -1,8 +1,11 @@
-@import "mod-molecular";
-@import "mod-data-lists";
-@import "mod-tables";
-@import "mod-forms";
-@import "mod-navigation";
+@use 'variables' as *;
+@use 'mixins' as *;
 
-@import "mod-development";
+@use "mod-molecular";
+@use "mod-data-lists";
+@use "mod-tables";
+@use "mod-forms";
+@use "mod-navigation";
+
+@use "mod-development";
 
